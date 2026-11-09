@@ -1,4 +1,4 @@
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { HeroMedia } from "@/components/public/hero-media";
 
@@ -36,6 +36,23 @@ describe("HeroMedia", () => {
   });
 
   afterEach(() => vi.restoreAllMocks());
+
+  it("starts loading motion shortly after hydration without waiting for the window load event", () => {
+    vi.useFakeTimers();
+    try {
+      setReducedMotion(false);
+      vi.spyOn(document, "readyState", "get").mockReturnValue("loading");
+      const { container } = render(<HeroMedia />);
+      const video = container.querySelector("video");
+
+      expect(video?.querySelector("source")).toBeNull();
+      act(() => vi.advanceTimersByTime(250));
+      expect(video?.querySelectorAll("source")).toHaveLength(2);
+      expect(container.querySelector(".hero-media")).toHaveAttribute("data-playback-state", "poster");
+    } finally {
+      vi.useRealTimers();
+    }
+  });
 
   it("renders a responsive poster and compatible video attributes", async () => {
     setReducedMotion(false);

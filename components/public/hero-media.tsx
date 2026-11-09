@@ -8,7 +8,7 @@ const INITIAL_POSTER = "/images/optimized/clinic/esclare-hero-poster-v4.webp";
 const FINAL_FRAME = "/images/optimized/clinic/esclare-hero-final-frame-v4.webp";
 const MOBILE_INITIAL_POSTER = "/images/optimized/clinic/esclare-hero-poster-v4-mobile.webp";
 const MOBILE_FINAL_FRAME = "/images/optimized/clinic/esclare-hero-final-frame-v4-mobile.webp";
-const VIDEO_START_DELAY_MS = 4_000;
+const VIDEO_START_DELAY_MS = 250;
 
 type MotionPreference = "unknown" | "allow" | "reduce";
 type PlaybackState = "poster" | "playing" | "complete" | "fallback";
@@ -49,8 +49,6 @@ export function HeroMedia() {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const finalFrame = new Image();
-    finalFrame.src = FINAL_FRAME;
     const updatePreference = () => {
       setMotionPreference(mediaQuery.matches ? "reduce" : "allow");
       if (mediaQuery.matches) {
@@ -73,20 +71,13 @@ export function HeroMedia() {
       if (startTask !== undefined) window.clearTimeout(startTask);
       setVideoReady(true);
     };
-    const scheduleVideo = () => {
-      startTask = window.setTimeout(enableVideo, VIDEO_START_DELAY_MS);
-    };
-    if (document.readyState === "complete") {
-      scheduleVideo();
-    } else {
-      window.addEventListener("load", scheduleVideo, { once: true });
-    }
+    // Give the preloaded poster a head start without waiting for unrelated page assets.
+    startTask = window.setTimeout(enableVideo, VIDEO_START_DELAY_MS);
 
     document.addEventListener("pointerdown", enableVideo, { once: true });
     document.addEventListener("keydown", enableVideo, { once: true });
     return () => {
       if (startTask !== undefined) window.clearTimeout(startTask);
-      window.removeEventListener("load", scheduleVideo);
       document.removeEventListener("pointerdown", enableVideo);
       document.removeEventListener("keydown", enableVideo);
     };
@@ -136,6 +127,14 @@ export function HeroMedia() {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [attemptPlayback, motionPreference, videoReady]);
+
+  useEffect(() => {
+    if (playbackState !== "playing") return;
+    const finalFrame = new Image();
+    finalFrame.src = window.matchMedia("(max-width: 767px)").matches
+      ? MOBILE_FINAL_FRAME
+      : FINAL_FRAME;
+  }, [playbackState]);
 
   const videoVisible = playbackState === "playing";
   const posterSource = playbackState === "complete" ? FINAL_FRAME : INITIAL_POSTER;
