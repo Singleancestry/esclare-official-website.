@@ -13,6 +13,7 @@ import { treatmentNavigationItems } from "@/lib/services/treatment-navigation";
 const links = [
   ["Home", "/"],
   ["GLP-1 Slimming", "/glp-1-slimming"],
+  ["Promos", "/promos"],
   ["About", "/about"],
   ["Skin Education", "/skin-education"],
   ["Branches", "/branches"],

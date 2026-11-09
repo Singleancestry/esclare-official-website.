@@ -172,8 +172,8 @@ export const treatmentGalleryCategories: ReadonlyArray<TreatmentGalleryCategory>
     bookingSlug: "pico-glow-body",
     images: [
       {
-        src: "/images/optimized/treatments/pico-underarm/pico-underarm-treatment.webp",
-        alt: "Pico laser brightening treatment visual for the underarm area with protective eyewear",
+        src: "/images/optimized/treatments/pico-underarm/pico-underarm-clinic.webp",
+        alt: "A gloved clinician positioning a Pico laser handpiece at a client's underarm",
         caption: "Pico underarm brightening",
         width: 1536,
         height: 1024,
