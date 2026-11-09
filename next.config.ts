@@ -72,6 +72,8 @@ const privatePageRoutes = [
 ];
 
 const nextConfig: NextConfig = {
+  // Hostinger reports more CPUs than its build container can support with workers.
+  experimental: { cpus: 2 },
   typedRoutes: true,
   output: "standalone",
   allowedDevOrigins: ["127.0.0.1"],
