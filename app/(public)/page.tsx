@@ -5,7 +5,6 @@ import {
   ArrowRight,
   CalendarDays,
   Check,
-  HeartPulse,
   MapPin,
   ShieldCheck,
   Stethoscope,
@@ -20,7 +19,6 @@ import {
   diodeMachine,
   nagaClinicGallery,
 } from "@/lib/clinic/media";
-import { GLP1_PROGRAM_LABEL } from "@/lib/services/catalog";
 
 export const metadata: Metadata = {
   title: "Aesthetic Clinic in Naga City & Daet",
@@ -38,14 +36,14 @@ export const metadata: Metadata = {
 
 const signatureTreatments = [
   {
-    name: "GLP-1 Slimming",
-    category: "Medically guided wellness",
-    description: `${GLP1_PROGRAM_LABEL}. Eligibility, medication selection, and continuation depend on consultation and assessment by a qualified medical professional.`,
-    benefits: ["Four-week program", "Medical assessment and follow-up"],
-    href: "/glp-1-slimming",
-    bookingSlug: "glp-1-slimming",
-    image: "/images/optimized/treatments/glp-1-slimming-pen.webp",
-    alt: "Semaglutide injection pen representing ESCLARE's medically guided GLP-1 slimming program",
+    name: "Korean Facial",
+    category: "Facial treatment",
+    description: "A facial tailored to your skin’s needs, including congestion, dryness, or dullness.",
+    benefits: ["Skin assessment", "Personalized facial care"],
+    href: "/treatments/korean-facial",
+    bookingSlug: "korean-facial",
+    image: "/images/optimized/treatments/korean-facial-clinic.webp",
+    alt: "Gloved ESCLARE staff member working with a client during a facial",
   },
   {
     name: "Pico Laser",
@@ -138,25 +136,15 @@ export default function PublicHomePage() {
                   className="signature-treatment-card editorial-card group overflow-hidden"
                   data-reveal
                 >
-                  {treatment.image ? (
-                    <div className="relative aspect-[4/5] overflow-hidden">
-                      <Image
-                        src={treatment.image}
-                        alt={treatment.alt}
-                        fill
-                        sizes="(min-width: 1280px) 18vw, (min-width: 768px) 45vw, 92vw"
-                        className="object-cover transition duration-700 ease-out group-hover:scale-[1.045]"
-                      />
-                    </div>
-                  ) : (
-                    <div
-                      className="signature-treatment-placeholder aspect-[4/5]"
-                      aria-hidden="true"
-                    >
-                      <HeartPulse size={46} strokeWidth={1.25} />
-                      <span>Clinician-led wellness</span>
-                    </div>
-                  )}
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <Image
+                      src={treatment.image}
+                      alt={treatment.alt}
+                      fill
+                      sizes="(min-width: 1280px) 18vw, (min-width: 768px) 45vw, 92vw"
+                      className="object-cover transition duration-700 ease-out group-hover:scale-[1.045]"
+                    />
+                  </div>
                   <div className="relative flex flex-1 flex-col p-5 pt-7">
                     <span className="absolute right-5 top-0 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-[#D6B078] bg-[#FAF4EC] font-serif text-sm text-[#8B3F48]">
                       0{index + 1}
