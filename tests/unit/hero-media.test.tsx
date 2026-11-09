@@ -80,7 +80,7 @@ describe("HeroMedia", () => {
     );
     expect(video?.querySelector("source:not([media])")).toHaveAttribute(
       "src",
-      "/media/esclare-hero-no-logo-v4.mp4",
+      "/media/esclare-hero-no-logo-v4-desktop-lite.mp4",
     );
   });
 
