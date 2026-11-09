@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const VIDEO_SOURCE = "/media/esclare-hero-no-logo-v4.mp4";
+const VIDEO_SOURCE = "/media/esclare-hero-no-logo-v4-desktop-lite.mp4";
 const MOBILE_VIDEO_SOURCE = "/media/esclare-hero-no-logo-v4-mobile.mp4";
 const INITIAL_POSTER = "/images/optimized/clinic/esclare-hero-poster-v4.webp";
 const FINAL_FRAME = "/images/optimized/clinic/esclare-hero-final-frame-v4.webp";
@@ -66,18 +66,17 @@ export function HeroMedia() {
   useEffect(() => {
     if (motionPreference !== "allow") return;
 
-    let startTask: number | undefined;
     const enableVideo = () => {
-      if (startTask !== undefined) window.clearTimeout(startTask);
+      window.clearTimeout(startTask);
       setVideoReady(true);
     };
     // Give the preloaded poster a head start without waiting for unrelated page assets.
-    startTask = window.setTimeout(enableVideo, VIDEO_START_DELAY_MS);
+    const startTask = window.setTimeout(enableVideo, VIDEO_START_DELAY_MS);
 
     document.addEventListener("pointerdown", enableVideo, { once: true });
     document.addEventListener("keydown", enableVideo, { once: true });
     return () => {
-      if (startTask !== undefined) window.clearTimeout(startTask);
+      window.clearTimeout(startTask);
       document.removeEventListener("pointerdown", enableVideo);
       document.removeEventListener("keydown", enableVideo);
     };
