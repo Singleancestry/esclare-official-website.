@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Route } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, CalendarDays, CheckCircle2, Clock3, Stethoscope } from "lucide-react";
@@ -259,7 +259,7 @@ export default async function TreatmentDetailPage({ params }: Props) {
       </section>
       {slug === "pico-glow-face" && (
         <TreatmentVisitLinks
-          guide={{ href: "/skin-education/pico-laser-facial-pigmentation", label: "Read the Pico laser guide" }}
+          guide={{ href: "/skin-education/pico-laser-facial-pigmentation" as Route, label: "Read the Pico laser guide" }}
           video={{ href: "/treatments/pico-glow-face/video", label: "Watch the Pico Face clinic clip" }}
         />
       )}
