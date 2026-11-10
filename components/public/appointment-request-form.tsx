@@ -258,7 +258,7 @@ export function AppointmentRequestForm({
             <p
               id="booking-error"
               role="alert"
-              className="rounded-lg border-l-2 border-[#B42D43] bg-[#FFF2F3] px-3 py-2 text-sm text-[#8B1F32]"
+              className="rounded-lg border border-[#B42D43]/30 bg-[#FFF2F3] px-3 py-2 text-sm text-[#8B1F32]"
             >
               {error}
             </p>
