@@ -8,7 +8,6 @@ function offers(treatment: Treatment) {
   const base = {
     "@type": "Offer",
     priceCurrency: "PHP",
-    availability: "https://schema.org/InStock",
     url: `${siteUrl}/treatments/${treatment.slug}`,
   };
 
@@ -45,10 +44,6 @@ export function buildTreatmentSchema(treatment: Treatment, detail: TreatmentDeta
         preparation: detail.beforecare.join(" "),
         followup: detail.aftercare.join(" "),
         provider: { "@id": organizationId },
-        availableAtOrFrom: [
-          { "@id": `${siteUrl}/branches/naga#clinic` },
-          { "@id": `${siteUrl}/branches/daet#clinic` },
-        ],
         areaServed: [
           { "@type": "AdministrativeArea", name: "Camarines Sur" },
           { "@type": "AdministrativeArea", name: "Camarines Norte" },

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CalendarDays, CheckCircle2, Snowflake, Waves } from "lucide-react";
 import { diodeMachine } from "@/lib/clinic/media";
+import { TreatmentVisitLinks } from "@/components/public/treatment-visit-links";
 
 export const metadata: Metadata = {
   title: "4D Diode Laser Hair Reduction",
@@ -152,6 +153,10 @@ export default function DiodeLaserPage() {
           </div>
         </div>
       </section>
+      <TreatmentVisitLinks
+        guide={{ href: "/skin-education/diode-laser-hair-removal-guide", label: "Read the diode laser guide" }}
+        video={{ href: "/treatments#treatment-videos-heading", label: "See the diode treatment video" }}
+      />
     </main>
   );
 }

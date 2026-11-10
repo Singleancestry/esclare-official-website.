@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight, CalendarDays, CheckCircle2, Clock3, Stethoscope } from "lucide-react";
 import { JsonLd } from "@/components/public/json-ld";
 import { SkinSupportPage } from "@/components/public/skin-support-page";
+import { TreatmentVisitLinks } from "@/components/public/treatment-visit-links";
 import { buildTreatmentSchema } from "@/lib/seo/treatment-schema";
 import { formatTreatmentPrice, treatments } from "@/lib/services/catalog";
 import { getTreatmentDetail } from "@/lib/services/details";
@@ -256,6 +257,13 @@ export default async function TreatmentDetailPage({ params }: Props) {
           </Link>
         </div>
       </section>
+      {slug === "pico-glow-face" && (
+        <TreatmentVisitLinks
+          guide={{ href: "/skin-education/pico-laser-facial-pigmentation", label: "Read the Pico laser guide" }}
+          video={{ href: "/treatments/pico-glow-face/video", label: "Watch the Pico Face clinic clip" }}
+        />
+      )}
+      {(slug === "7d-hifu-face" || slug === "exilift-face") && <TreatmentVisitLinks />}
     </main>
   );
 }

@@ -4,6 +4,7 @@ const treatmentVideoGroups = [
   {
     title: "Pico Laser Face",
     href: "/treatments/pico-glow-face",
+    watch: "/treatments/pico-glow-face/video",
     clips: [["pico-face-05", "Side view of the Pico handpiece"]],
   },
   {
@@ -38,6 +39,11 @@ export function TreatmentVideos() {
               {"href" in group && (
                 <Link href={group.href} className="public-link text-sm font-semibold">
                   View {group.title} details
+                </Link>
+              )}
+              {"watch" in group && (
+                <Link href={group.watch} className="public-link text-sm font-semibold">
+                  Open video page
                 </Link>
               )}
             </div>
