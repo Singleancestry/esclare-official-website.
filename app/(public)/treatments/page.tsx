@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Route } from "next";
 import { ArrowRight, CalendarDays, CheckCircle2, Stethoscope } from "lucide-react";
 import { treatmentGalleryCategories } from "@/lib/clinic/treatment-media";
+import { TreatmentVideoPlayer } from "@/components/public/treatment-video-player";
 import { TreatmentVideos } from "@/components/public/treatment-videos";
 import {
   catalogEffectiveDate,
@@ -19,6 +20,57 @@ export const metadata: Metadata = {
     "Explore ESCLARE facials, laser treatments, HIFU, professional skin support, doctor-led aesthetics and regular prices in Naga and Daet.",
   alternates: { canonical: "/treatments" },
 };
+
+const catalogVideoSlugs = new Set([
+  "esthemax-hydrojelly-mask",
+  "korean-facial",
+  "hydrajet-peel",
+  "acne-care-pdt",
+  "exilift-face",
+  "fractional-laser",
+  "7d-hifu-face",
+  "minor-skin-procedures",
+  "hiko-nose-lift",
+  "exfoliare-cryo",
+  "botox-facial",
+]);
+
+function TreatmentCardMedia({ slug, name }: { slug: string; name: string }) {
+  if (catalogVideoSlugs.has(slug)) {
+    return (
+      <div
+        className="mb-5 aspect-[4/3] overflow-hidden rounded-md bg-[#EBD8C4]"
+        style={slug === "acne-care-pdt" ? undefined : { filter: "sepia(0.06) saturate(0.97)" }}
+      >
+        <TreatmentVideoPlayer
+          videoId={"catalog-" + slug}
+          surface="catalog"
+          poster={"/images/optimized/treatments/catalog/" + slug + ".webp"}
+          aria-label={
+            slug === "minor-skin-procedures"
+              ? "Wart or skin-tag removal, face and neck"
+              : name + " treatment video"
+          }
+          className="block h-full w-full object-cover"
+        />
+      </div>
+    );
+  }
+
+  if (slug !== "intense-hydrating") return null;
+
+  return (
+    <Image
+      src="/images/optimized/treatments/catalog/intense-hydrating.webp"
+      alt="A client with facial product applied while resting on a treatment bed"
+      width={960}
+      height={720}
+      sizes="(min-width: 1024px) 23vw, (min-width: 640px) 43vw, 85vw"
+      className="mb-5 aspect-[4/3] w-full rounded-md object-cover"
+      style={{ filter: "sepia(0.06) saturate(0.97)" }}
+    />
+  );
+}
 
 const php = new Intl.NumberFormat("en-PH", {
   style: "currency",
@@ -171,6 +223,7 @@ export default function TreatmentsPage() {
                       className="group min-h-60 rounded-lg border border-[#D8C9B4] bg-white p-6 shadow-[0_8px_24px_rgba(65,30,42,0.05)] transition duration-300 hover:-translate-y-1 hover:border-[#B99A68] hover:shadow-[0_18px_40px_rgba(65,30,42,0.11)]"
                       data-reveal
                     >
+                      <TreatmentCardMedia slug={item.slug} name={item.name} />
                       <div className="flex items-start justify-between gap-4">
                         <h3 className="text-xl text-[#3F1724]">{item.name}</h3>
                         {(item.doctorRequired || item.assessmentRequired) && (

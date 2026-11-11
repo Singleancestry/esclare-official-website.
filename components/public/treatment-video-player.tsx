@@ -2,10 +2,11 @@
 
 import { useRef, useState, type ComponentProps } from "react";
 import { Play } from "lucide-react";
+import Image from "next/image";
 import { readPrivacyConsent } from "@/lib/privacy/consent";
 
 type VideoEvent = "treatment_video_start" | "treatment_video_halfway" | "treatment_video_complete";
-type VideoSurface = "gallery" | "watch_page" | "signature";
+type VideoSurface = "gallery" | "watch_page" | "signature" | "catalog";
 type AnalyticsWindow = Window & {
   gtag?: (
     command: "event",
@@ -14,17 +15,19 @@ type AnalyticsWindow = Window & {
   ) => void;
 };
 
-type Props = Pick<ComponentProps<"video">, "aria-label" | "className"> & {
+type Props = Pick<ComponentProps<"video">, "aria-label" | "className" | "poster"> & {
   videoId: string;
   surface: VideoSurface;
 };
 
-export function TreatmentVideoPlayer({ videoId, surface, ...props }: Props) {
+export function TreatmentVideoPlayer({ videoId, surface, poster, ...props }: Props) {
   const sent = useRef(new Set<VideoEvent>());
   const videoRef = useRef<HTMLVideoElement>(null);
   const playButtonRef = useRef<HTMLButtonElement>(null);
   const [playback, setPlayback] = useState<"ready" | "loading" | "started" | "failed">("ready");
-  const showPlayButton = surface === "signature" && playback !== "started";
+  const usesPlayButton = surface === "signature" || surface === "catalog";
+  const showPlayButton = usesPlayButton && playback !== "started";
+  const catalogPoster = surface === "catalog" ? poster : undefined;
 
   function track(event: VideoEvent) {
     if (sent.current.has(event) || !readPrivacyConsent()?.analytics) return;
@@ -42,7 +45,7 @@ export function TreatmentVideoPlayer({ videoId, surface, ...props }: Props) {
       tabIndex={showPlayButton ? -1 : undefined}
       playsInline
       preload="none"
-      poster={"/media/treatment-clips/" + videoId + ".webp"}
+      poster={catalogPoster ? undefined : (poster ?? "/media/treatment-clips/" + videoId + ".webp")}
       src={"/media/treatment-clips/" + videoId + ".mp4"}
       onPlaying={() => {
         if (showPlayButton) {
@@ -68,11 +71,20 @@ export function TreatmentVideoPlayer({ videoId, surface, ...props }: Props) {
     />
   );
 
-  if (surface !== "signature") return player;
+  if (!usesPlayButton) return player;
 
   return (
     <div className="relative size-full">
       {player}
+      {showPlayButton && catalogPoster && (
+        <Image
+          src={catalogPoster}
+          alt=""
+          fill
+          sizes="(min-width: 1024px) 23vw, (min-width: 640px) 43vw, 85vw"
+          className="pointer-events-none object-cover"
+        />
+      )}
       {showPlayButton && (
         <button
           ref={playButtonRef}
