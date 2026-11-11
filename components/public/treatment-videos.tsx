@@ -1,3 +1,4 @@
+import { TreatmentVideoPlayer } from "@/components/public/treatment-video-player";
 import Link from "next/link";
 
 const treatmentVideoGroups = [
@@ -48,28 +49,22 @@ export function TreatmentVideos() {
               )}
             </div>
             <div className="mt-5">
-              {group.clips.map(([file, label]) => {
-                const path = `/media/treatment-clips/${file}`;
-                return (
-                  <figure
-                    key={file}
-                    className="overflow-hidden rounded-lg border border-[#D8C9B4] bg-white"
-                  >
-                    <video
-                      aria-label={`${group.title}: ${label}`}
-                      className="block aspect-[4/5] w-full bg-[#32101E] object-contain"
-                      controls
-                      playsInline
-                      preload="none"
-                      poster={`${path}.webp`}
-                      src={`${path}.mp4`}
-                    />
-                    <figcaption className="px-4 py-3 text-sm font-semibold text-[#481827]">
-                      {label}
-                    </figcaption>
-                  </figure>
-                );
-              })}
+              {group.clips.map(([file, label]) => (
+                <figure
+                  key={file}
+                  className="overflow-hidden rounded-lg border border-[#D8C9B4] bg-white"
+                >
+                  <TreatmentVideoPlayer
+                    videoId={file}
+                    surface="gallery"
+                    aria-label={`${group.title}: ${label}`}
+                    className="block aspect-[4/5] w-full bg-[#32101E] object-contain"
+                  />
+                  <figcaption className="px-4 py-3 text-sm font-semibold text-[#481827]">
+                    {label}
+                  </figcaption>
+                </figure>
+              ))}
             </div>
           </section>
         ))}
