@@ -1,14 +1,7 @@
 import type { Metadata, Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  CalendarDays,
-  Check,
-  MapPin,
-  ShieldCheck,
-  Stethoscope,
-} from "lucide-react";
+import { ArrowRight, CalendarDays, Check, MapPin, ShieldCheck, Stethoscope } from "lucide-react";
 import { AuthenticHero } from "@/components/public/authentic-hero";
 import { HomepageReviews } from "@/components/public/homepage-reviews";
 import { TreatmentGallery } from "@/components/public/treatment-gallery";
@@ -38,7 +31,8 @@ const signatureTreatments = [
   {
     name: "Korean Facial",
     category: "Facial treatment",
-    description: "A facial tailored to your skin’s needs, including congestion, dryness, or dullness.",
+    description:
+      "A facial tailored to your skin’s needs, including congestion, dryness, or dullness.",
     benefits: ["Skin assessment", "Personalized facial care"],
     href: "/treatments/korean-facial",
     bookingSlug: "korean-facial",

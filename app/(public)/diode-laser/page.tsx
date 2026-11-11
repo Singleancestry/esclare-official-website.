@@ -154,8 +154,14 @@ export default function DiodeLaserPage() {
         </div>
       </section>
       <TreatmentVisitLinks
-        guide={{ href: "/skin-education/diode-laser-hair-removal-guide" as Route, label: "Read the diode laser guide" }}
-        video={{ href: "/treatments#treatment-videos-heading", label: "See the diode treatment video" }}
+        guide={{
+          href: "/skin-education/diode-laser-hair-removal-guide" as Route,
+          label: "Read the diode laser guide",
+        }}
+        video={{
+          href: "/treatments#treatment-videos-heading",
+          label: "See the diode treatment video",
+        }}
       />
     </main>
   );

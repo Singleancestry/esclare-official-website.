@@ -46,7 +46,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...approvedArticlePaths,
   ].map((path) => ({
     url: `${baseUrl}${path}`,
-    lastModified: educationArticles.find((article) => path === `/skin-education/${article.slug}`)?.updatedAt,
+    lastModified: educationArticles.find((article) => path === `/skin-education/${article.slug}`)
+      ?.updatedAt,
     changeFrequency: path === "/" ? "weekly" : "monthly",
     priority:
       path === "/"

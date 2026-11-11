@@ -259,8 +259,14 @@ export default async function TreatmentDetailPage({ params }: Props) {
       </section>
       {slug === "pico-glow-face" && (
         <TreatmentVisitLinks
-          guide={{ href: "/skin-education/pico-laser-facial-pigmentation" as Route, label: "Read the Pico laser guide" }}
-          video={{ href: "/treatments/pico-glow-face/video", label: "Watch the Pico Face clinic clip" }}
+          guide={{
+            href: "/skin-education/pico-laser-facial-pigmentation" as Route,
+            label: "Read the Pico laser guide",
+          }}
+          video={{
+            href: "/treatments/pico-glow-face/video",
+            label: "Watch the Pico Face clinic clip",
+          }}
         />
       )}
       {(slug === "7d-hifu-face" || slug === "exilift-face") && <TreatmentVisitLinks />}
