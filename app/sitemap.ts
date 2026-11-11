@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
     "/",
     "/treatments",
+    "/treatments/pico-glow-face/video",
     "/treatments/skin-support",
     "/treatments/skin-support/mccm",
     "/glp-1-slimming",
@@ -45,7 +46,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...approvedArticlePaths,
   ].map((path) => ({
     url: `${baseUrl}${path}`,
-    lastModified: new Date(),
+    lastModified: educationArticles.find((article) => path === `/skin-education/${article.slug}`)
+      ?.updatedAt,
     changeFrequency: path === "/" ? "weekly" : "monthly",
     priority:
       path === "/"

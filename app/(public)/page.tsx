@@ -1,17 +1,11 @@
 import type { Metadata, Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  CalendarDays,
-  Check,
-  MapPin,
-  ShieldCheck,
-  Stethoscope,
-} from "lucide-react";
+import { ArrowRight, CalendarDays, Check, MapPin, ShieldCheck, Stethoscope } from "lucide-react";
 import { AuthenticHero } from "@/components/public/authentic-hero";
 import { HomepageReviews } from "@/components/public/homepage-reviews";
 import { TreatmentGallery } from "@/components/public/treatment-gallery";
+import { TreatmentVideoPlayer } from "@/components/public/treatment-video-player";
 import { BUSINESS_NAME } from "@/lib/clinic/brand";
 import {
   attendantPortrait,
@@ -38,11 +32,13 @@ const signatureTreatments = [
   {
     name: "Korean Facial",
     category: "Facial treatment",
-    description: "A facial tailored to your skin’s needs, including congestion, dryness, or dullness.",
+    description:
+      "A facial tailored to your skin’s needs, including congestion, dryness, or dullness.",
     benefits: ["Skin assessment", "Personalized facial care"],
     href: "/treatments/korean-facial",
     bookingSlug: "korean-facial",
-    image: "/images/optimized/treatments/korean-facial-clinic.webp",
+    image: "/images/optimized/treatments/signature/korean-facial.webp",
+    mediaTone: "sepia(0.06) saturate(0.96)",
     alt: "Gloved ESCLARE staff member working with a client during a facial",
   },
   {
@@ -53,7 +49,8 @@ const signatureTreatments = [
     benefits: ["Tone and texture", "Individual settings"],
     href: "/treatments#laser-and-brightening",
     bookingSlug: "pico-glow-face",
-    image: "/images/optimized/treatments/pico-face/pico-face-treatment.webp",
+    image: "/images/optimized/treatments/signature/pico-laser.webp",
+    mediaTone: "sepia(0.12) saturate(0.96)",
     alt: "ESCLARE Pico laser facial treatment",
   },
   {
@@ -64,8 +61,8 @@ const signatureTreatments = [
     benefits: ["Cooling support", "Area-specific plans"],
     href: "/diode-laser",
     bookingSlug: "",
-    image: "/images/optimized/treatments/diode/diode-underarm-treatment.webp",
-    alt: "ESCLARE 4D diode laser hair removal treatment",
+    videoId: "signature-diode",
+    mediaTone: "sepia(0.07) saturate(0.96)",
   },
   {
     name: "HIFU",
@@ -75,8 +72,8 @@ const signatureTreatments = [
     benefits: ["Focused ultrasound", "Personalized treatment"],
     href: "/treatments#lifting-and-contouring",
     bookingSlug: "7d-hifu-face",
-    image: "/images/optimized/treatments/hifu/hifu-face-treatment.webp",
-    alt: "ESCLARE HIFU face treatment",
+    videoId: "signature-hifu",
+    mediaTone: "sepia(0.06) saturate(0.96)",
   },
   {
     name: "Botox Injections",
@@ -86,8 +83,9 @@ const signatureTreatments = [
     benefits: ["Doctor assessment", "Natural-looking goals"],
     href: "/treatments#doctor-procedures",
     bookingSlug: "fine-lines",
-    image: "/images/optimized/treatments/doctor/anti-wrinkle/anti-wrinkle-treatment.webp",
-    alt: "ESCLARE doctor performing an anti-wrinkle injectable treatment",
+    image: "/images/optimized/treatments/signature/botox-injections.webp",
+    mediaTone: "saturate(0.93)",
+    alt: "Illustration of a provider preparing a forehead injection",
   },
 ] as const;
 
@@ -136,14 +134,26 @@ export default function PublicHomePage() {
                   className="signature-treatment-card editorial-card group overflow-hidden"
                   data-reveal
                 >
-                  <div className="relative aspect-[4/5] overflow-hidden">
-                    <Image
-                      src={treatment.image}
-                      alt={treatment.alt}
-                      fill
-                      sizes="(min-width: 1280px) 18vw, (min-width: 768px) 45vw, 92vw"
-                      className="object-cover transition duration-700 ease-out group-hover:scale-[1.045]"
-                    />
+                  <div
+                    className="relative aspect-[4/5] overflow-hidden bg-[#EBD8C4]"
+                    style={{ filter: treatment.mediaTone }}
+                  >
+                    {"videoId" in treatment ? (
+                      <TreatmentVideoPlayer
+                        videoId={treatment.videoId}
+                        surface="signature"
+                        aria-label={treatment.name + " treatment video"}
+                        className="block h-full w-full object-cover"
+                      />
+                    ) : (
+                      <Image
+                        src={treatment.image}
+                        alt={treatment.alt}
+                        fill
+                        sizes="(min-width: 1280px) 18vw, (min-width: 768px) 45vw, 92vw"
+                        className="object-cover transition duration-700 ease-out group-hover:scale-[1.045]"
+                      />
+                    )}
                   </div>
                   <div className="relative flex flex-1 flex-col p-5 pt-7">
                     <span className="absolute right-5 top-0 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-[#D6B078] bg-[#FAF4EC] font-serif text-sm text-[#8B3F48]">

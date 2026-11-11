@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Route } from "next";
 import { ArrowRight, CalendarDays, CheckCircle2, Stethoscope } from "lucide-react";
 import { treatmentGalleryCategories } from "@/lib/clinic/treatment-media";
+import { TreatmentVideos } from "@/components/public/treatment-videos";
 import {
   catalogEffectiveDate,
   diodePackages,
@@ -61,6 +62,12 @@ export default function TreatmentsPage() {
         className="public-scrollbar-hide sticky top-[72px] z-30 overflow-x-auto border-b border-[#D8C9B4] bg-[#FBF8F2]/95 backdrop-blur-xl"
       >
         <div className="public-container flex min-w-max gap-6 py-4">
+          <a
+            href="#treatment-videos-heading"
+            className="public-link pb-1 text-xs font-bold uppercase tracking-[0.06em] text-[#5B1830]"
+          >
+            Videos
+          </a>
           {treatmentNavigationItems.slice(1).map((item) => (
             <a
               key={item.href}
@@ -122,6 +129,8 @@ export default function TreatmentsPage() {
           </div>
         </div>
       </section>
+
+      <TreatmentVideos />
 
       <div className="public-container py-16 sm:py-24">
         {orderedTreatmentCategories.map((category, categoryIndex) => {

@@ -48,7 +48,10 @@ describe("HeroMedia", () => {
       expect(video?.querySelector("source")).toBeNull();
       act(() => vi.advanceTimersByTime(250));
       expect(video?.querySelectorAll("source")).toHaveLength(2);
-      expect(container.querySelector(".hero-media")).toHaveAttribute("data-playback-state", "poster");
+      expect(container.querySelector(".hero-media")).toHaveAttribute(
+        "data-playback-state",
+        "poster",
+      );
     } finally {
       vi.useRealTimers();
     }
