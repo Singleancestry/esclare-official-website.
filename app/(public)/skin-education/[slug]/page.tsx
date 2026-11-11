@@ -49,6 +49,9 @@ export default async function EducationArticlePage({ params }: Props) {
   const article = getEducationArticle(slug);
   if (!article || !article.published) notFound();
   const category = getEducationCategory(article.category);
+  const suitabilityId = article.sections.some((section) => section.id === "suitability")
+    ? "suitability-checklist"
+    : "suitability";
   const related = article.relatedArticles
     .map((relatedSlug) => getEducationArticle(relatedSlug))
     .filter((item) => item !== undefined);
@@ -145,7 +148,7 @@ export default async function EducationArticlePage({ params }: Props) {
                 ))}
                 <a href="#beforecare">Pre Care</a>
                 <a href="#aftercare">Aftercare</a>
-                <a href="#suitability">Who may not be suitable</a>
+                <a href={`#${suitabilityId}`}>Who may not be suitable</a>
                 <a href="#contact">When to contact the clinic</a>
                 <a href="#faqs">Frequently asked questions</a>
                 <a href="#references">References</a>
@@ -192,7 +195,7 @@ export default async function EducationArticlePage({ params }: Props) {
                   ))}
                 </ul>
               </section>
-              <section id="suitability">
+              <section id={suitabilityId}>
                 <h2>Who may not be suitable</h2>
                 <p>
                   Suitability depends on individual assessment. Treatment may be delayed, modified,

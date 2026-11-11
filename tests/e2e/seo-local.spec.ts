@@ -32,7 +32,7 @@ test("metadata and structured data use the canonical business name", async ({ pa
   expect(html).not.toMatch(/Aesthetic\s*(?:&|and)\s*Wellness Clinic/i);
 
   await page.goto("/skin-education/diode-laser-hair-removal-guide");
-  await expect(page).toHaveTitle("Diode Laser Hair Removal Guide | Esclare Aesthetic Center");
+  await expect(page).toHaveTitle("Ares Quattro — 4D Diode Hair Removal | Esclare Aesthetic Center");
 
   await page.goto("/branches/naga");
   await expect(page).toHaveTitle("Esclare Aesthetic Center – Naga");
