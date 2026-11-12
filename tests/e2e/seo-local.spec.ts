@@ -25,8 +25,11 @@ test("metadata and structured data use the canonical business name", async ({ pa
     "Esclare Aesthetic Center",
   );
 
-  const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
-  expect(schemas.join("\n")).toContain('"name":"Esclare Aesthetic Center"');
+  await expect
+    .poll(async () =>
+      (await page.locator('script[type="application/ld+json"]').allTextContents()).join("\n"),
+    )
+    .toContain('"name":"Esclare Aesthetic Center"');
 
   const html = await (await request.get("/")).text();
   expect(html).not.toMatch(/Aesthetic\s*(?:&|and)\s*Wellness Clinic/i);
