@@ -17,8 +17,10 @@ import {
 } from "@/app/(public)/appointment-request/actions";
 import { clinicBranches, getBranch, type BranchCode } from "@/lib/clinic/details";
 import { trackPublicEvent } from "@/lib/analytics/public-events";
+import { formatAppointmentRequestMessage } from "@/lib/appointments/request-message";
 import { TurnstileField } from "@/components/security/turnstile-field";
 import { treatments } from "@/lib/services/catalog";
+import { appointmentRequestSchema } from "@/lib/validation/appointment-request";
 
 const initialPublicAppointmentRequestState: PublicAppointmentRequestState = {
   status: "idle",
@@ -40,8 +42,8 @@ export function AppointmentRequestForm({
   const [treatmentSlug, setTreatmentSlug] = useState(initialTreatment);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  const [copied, setCopied] = useState(false);
-  const [copyError, setCopyError] = useState(false);
+  const [draft, setDraft] = useState<{ message: string; branchCode: BranchCode } | null>(null);
+  const [copyStatus, setCopyStatus] = useState<"idle" | "copying" | "copied" | "blocked">("idle");
   const idempotencyRef = useRef<HTMLInputElement>(null);
   const startedRef = useRef(false);
   const trackedResultRef = useRef<PublicAppointmentRequestState["status"]>("idle");
@@ -50,9 +52,9 @@ export function AppointmentRequestForm({
     initialPublicAppointmentRequestState,
   );
   const selectedBranch = getBranch(branchCode);
-  const confirmationBranch = state.submittedBranchCode
-    ? getBranch(state.submittedBranchCode)
-    : selectedBranch;
+  const confirmationBranch = getBranch(
+    draft?.branchCode ?? state.submittedBranchCode ?? branchCode,
+  );
   const availableTreatments = treatments.filter(
     (item) =>
       item.publicationStatus !== "regulatory-review" &&
@@ -60,7 +62,7 @@ export function AppointmentRequestForm({
   );
   const prepared = state.status === "saved" || state.status === "prepared";
   const error = state.status === "error" ? state.message : null;
-  const message = state.preparedMessage ?? "";
+  const message = draft?.message ?? (prepared ? (state.preparedMessage ?? "") : "");
 
   function trackFormStart() {
     if (startedRef.current) return;
@@ -86,15 +88,22 @@ export function AppointmentRequestForm({
     if (state.status === "error") trackPublicEvent("booking_form_error", parameters);
   }, [branchCode, state.status, state.submittedBranchCode, treatmentSlug]);
 
-  async function copyMessage() {
+  function trackMessengerClick(branch: BranchCode) {
+    trackPublicEvent("messenger_button_clicked", {
+      branch,
+      route: window.location.pathname,
+    });
+  }
+
+  async function copyMessage(text: string) {
+    setCopyStatus("copying");
     try {
-      await navigator.clipboard.writeText(message);
-      setCopied(true);
-      setCopyError(false);
-      window.setTimeout(() => setCopied(false), 2200);
+      await navigator.clipboard.writeText(text);
+      setCopyStatus("copied");
+      return true;
     } catch {
-      setCopied(false);
-      setCopyError(true);
+      setCopyStatus("blocked");
+      return false;
     }
   }
 
@@ -103,7 +112,7 @@ export function AppointmentRequestForm({
       <form
         action={formAction}
         noValidate
-        onSubmit={() => {
+        onSubmit={(event) => {
           trackPublicEvent("booking_button_clicked", {
             branch: branchCode,
             treatment: treatmentSlug || "general",
@@ -112,6 +121,31 @@ export function AppointmentRequestForm({
           if (idempotencyRef.current && !idempotencyRef.current.value) {
             idempotencyRef.current.value = crypto.randomUUID();
           }
+
+          setDraft(null);
+          setCopyStatus("idle");
+          const result = appointmentRequestSchema.safeParse(
+            Object.fromEntries(new FormData(event.currentTarget)),
+          );
+          if (!result.success || result.data.website) return;
+
+          const branch = getBranch(result.data.branchCode);
+          const treatment = availableTreatments.find(
+            (item) => item.slug === result.data.treatmentSlug,
+          );
+          const draftMessage = formatAppointmentRequestMessage(
+            result.data,
+            branch.name,
+            treatment?.name,
+          );
+          setDraft({ message: draftMessage, branchCode: branch.code });
+
+          // Start copying during the submit gesture. Open Messenger after the draft is copied.
+          void copyMessage(draftMessage).then((copied) => {
+            if (!copied) return;
+            window.open(branch.messenger, "_blank", "noopener,noreferrer");
+            trackMessengerClick(branch.code);
+          });
         }}
         onInput={() => {
           trackFormStart();
@@ -264,21 +298,21 @@ export function AppointmentRequestForm({
             </p>
           )}
           <p className="text-xs leading-5 text-[#5C5651]">
-            Preparing this form does not confirm a slot. ESCLARE confirms through Facebook, phone
-            call, or SMS.
+            Paste and send the copied message in Messenger. Your appointment is pending until
+            ESCLARE confirms it.
           </p>
           <TurnstileField />
           <button
             type="submit"
-            disabled={isPending}
+            disabled={isPending || copyStatus === "copying"}
             className="luxury-button w-full disabled:cursor-wait disabled:opacity-70 sm:w-fit"
           >
-            {isPending ? (
+            {isPending || copyStatus === "copying" ? (
               <>
-                <LoaderCircle className="animate-spin" size={17} /> Sending request
+                <LoaderCircle className="animate-spin" size={17} /> Preparing request
               </>
             ) : (
-              "Prepare request"
+              "Copy & Open Messenger"
             )}
           </button>
         </div>
@@ -291,7 +325,7 @@ export function AppointmentRequestForm({
           {confirmationBranch.schedule}.
           {confirmationBranch.lastClient ? ` ${confirmationBranch.lastClient}` : ""}
         </p>
-        {prepared ? (
+        {message ? (
           <div
             className="mt-6 border border-[#D3C2AC] bg-white p-4"
             role="status"
@@ -306,26 +340,33 @@ export function AppointmentRequestForm({
                 Reference {state.reference}
               </p>
             )}
-            <p className="mt-3 text-sm leading-6 text-[#4E4945]">{message}</p>
-            {state.message && (
+            <p className="mt-3 select-text text-sm leading-6 text-[#4E4945]">{message}</p>
+            {prepared && state.message && (
               <p className="mt-3 text-xs leading-5 text-[#5C5651]">{state.message}</p>
             )}
             <button
               type="button"
-              onClick={copyMessage}
+              disabled={copyStatus === "copying"}
+              onClick={() => void copyMessage(message)}
               className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase text-[#5B1830]"
             >
-              <Copy size={14} /> {copied ? "Copied" : "Copy message"}
+              <Copy size={14} /> {copyStatus === "copied" ? "Copied" : "Copy message"}
             </button>
+            {copyStatus === "copied" && (
+              <p className="mt-2 text-xs leading-5 text-[#5C5651]">
+                If the chat did not open, use the Facebook Messenger button below.
+              </p>
+            )}
           </div>
         ) : (
           <p className="mt-6 text-sm leading-6 text-[#625D58]">
             Enter your full name to prepare the message you can send through an official channel.
           </p>
         )}
-        {copyError && (
+        {copyStatus === "blocked" && (
           <p role="alert" className="mt-3 text-xs text-[#8B1F32]">
-            The message could not be copied. You can still open Messenger, call, or send an SMS.
+            Automatic copy was unavailable. Select and copy the message above, then use the Facebook
+            Messenger button to open the chat and paste it.
           </p>
         )}
         <div className="mt-6 grid gap-3">
@@ -333,12 +374,7 @@ export function AppointmentRequestForm({
             href={confirmationBranch.messenger}
             target="_blank"
             rel="noreferrer"
-            onClick={() =>
-              trackPublicEvent("messenger_button_clicked", {
-                branch: confirmationBranch.code,
-                route: window.location.pathname,
-              })
-            }
+            onClick={() => trackMessengerClick(confirmationBranch.code)}
             className="luxury-button justify-between"
           >
             <span className="inline-flex items-center gap-2">
@@ -359,7 +395,7 @@ export function AppointmentRequestForm({
             <Phone size={17} /> Call {confirmationBranch.phone}
           </a>
           <a
-            href={`sms:${confirmationBranch.phoneHref}${prepared ? `?body=${encodeURIComponent(`${message}${state.reference ? ` Reference: ${state.reference}.` : ""}`)}` : ""}`}
+            href={`sms:${confirmationBranch.phoneHref}${message ? `?body=${encodeURIComponent(`${message}${state.reference ? ` Reference: ${state.reference}.` : ""}`)}` : ""}`}
             className="luxury-button-outline justify-start bg-white"
           >
             <MessageCircle size={17} /> Send SMS
