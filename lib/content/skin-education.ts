@@ -68,63 +68,12 @@ export type EducationArticle = {
   relatedTreatments: ReadonlyArray<{ label: string; href: string }>;
 };
 
-const standardFaqs: ReadonlyArray<ArticleFaq> = [
-  {
-    question: "Is a consultation required?",
-    answer:
-      "Yes. A consultation helps the clinic review your goals, skin or health history, current medicines, and whether another approach may be safer or more appropriate.",
-  },
-  {
-    question: "Are results guaranteed?",
-    answer:
-      "No. Response varies with the concern, treatment plan, health factors, consistency, and aftercare. ESCLARE should confirm realistic expectations during assessment.",
-  },
-];
-
-function withStandardFaqs(faqs: ReadonlyArray<ArticleFaq>) {
-  return [...faqs, ...standardFaqs];
-}
-
-const laserReferences: ReadonlyArray<ArticleReference> = [
-  {
-    title: "American Academy of Dermatology: Laser hair removal FAQs",
-    url: "https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs",
-  },
-  {
-    title: "Systematic review of picosecond laser in dermatology",
-    url: "https://pubmed.ncbi.nlm.nih.gov/32282094/",
-  },
-];
-
-const regenerativeReferences: ReadonlyArray<ArticleReference> = [
-  {
-    title: "Systematic review of regenerative aesthetics",
-    url: "https://pubmed.ncbi.nlm.nih.gov/39198280/",
-  },
-  {
-    title: "Systematic review of polynucleotides in aesthetic medicine",
-    url: "https://pubmed.ncbi.nlm.nih.gov/39645667/",
-  },
-];
-
-const weightReferences: ReadonlyArray<ArticleReference> = [
-  {
-    title: "FDA prescribing information: Wegovy (semaglutide)",
-    url: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/215256s029lbl.pdf",
-  },
-  {
-    title: "FDA prescribing information: Zepbound (tirzepatide)",
-    url: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/217806s042lbl.pdf",
-  },
-];
-
 const educationArticleSource: ReadonlyArray<EducationArticle> = [
   {
     slug: "diode-laser-hair-removal-guide",
-    title:
-      "4D Wavelength Diode Laser Hair Removal: How It Works, Benefits, Sessions, and Aftercare",
+    title: "Ares Quattro — 4D Diode Hair Removal",
     excerpt:
-      "A practical guide to diode laser hair reduction, treatment areas, session planning, comfort, and aftercare.",
+      "How diode laser supports long-lasting hair reduction, why visits are spaced apart, and how to prepare and care for the treated skin.",
     category: "laser-treatments",
     tags: ["diode laser", "hair reduction", "underarms"],
     heroImage: "/images/optimized/treatments/diode/diode-underarm-treatment.webp",
@@ -134,95 +83,107 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
     status: "medical-review-required",
     published: false,
     publishedAt: "2026-07-19",
-    updatedAt: "2026-07-19",
-    readingMinutes: 8,
-    seoTitle: "Diode Laser Hair Removal Guide",
+    updatedAt: "2026-11-12",
+    readingMinutes: 3,
+    seoTitle: "Ares Quattro — 4D Diode Hair Removal",
     metaDescription:
-      "Understand diode laser hair reduction, typical sessions, skin-tone considerations, beforecare, and aftercare at ESCLARE Naga and Daet.",
+      "How diode laser supports long-lasting hair reduction, why visits are spaced apart, and how to prepare and care for the treated skin.",
     keyTakeaways: [
-      "Diode systems target pigment associated with the hair follicle to support gradual hair reduction.",
-      "Hair grows in cycles, so a planned series is commonly needed.",
-      "Skin tone, hair color, recent tanning, medicines, and treatment area affect suitability and settings.",
+      "The laser heats pigment in the hair and follicle to reduce future growth.",
+      "Hairs grow at different times, so treatment is usually planned across several visits.",
+      "Hair colour, skin tone, tanning and medicines help determine whether laser is suitable.",
     ],
     sections: [
       {
         id: "how-it-works",
-        title: "How diode laser hair reduction works",
+        title: "What happens to the hair follicle",
         paragraphs: [
-          "A diode laser delivers controlled light energy toward pigment in the hair shaft and follicle. The goal is to heat the follicle enough to reduce future growth while protecting the surrounding skin with appropriate settings and cooling.",
-          "Unlike shaving, which cuts hair at the surface, or waxing, which pulls hair from the follicle, laser treatment aims to reduce regrowth over time. IPL uses broad-spectrum light; a diode device uses selected laser wavelengths. Neither approach should be chosen without assessing skin tone, hair color, and medical history.",
+          "Light from the diode laser is absorbed by melanin, the pigment in hair. The resulting heat affects the follicle, which is the structure in the skin that grows the hair. The provider chooses settings and cooling to limit heat injury to nearby skin.",
+          "Shaving cuts hair at the surface. Waxing pulls hair from the follicle. Diode laser aims to reduce the amount of hair that grows back. Intense pulsed light, or IPL, uses a broader range of light. Your skin and hair need assessment before either method.",
         ],
       },
       {
         id: "sessions",
-        title: "Why treatment intervals and the hair-growth cycle matter",
+        title: "Why visits are spaced apart",
         paragraphs: [
-          "Laser hair removal works most effectively when individual hairs are in the appropriate active growth stage. Because hairs enter these stages at different times, sessions need to be appropriately spaced rather than repeated at very short intervals in an attempt to speed results.",
-          "Anagen is the active growth phase. Hair is most responsive during this stage because the growing hair provides an effective pathway for laser energy toward the follicle. Catagen is the transitional phase, when growth slows and the follicle begins moving away from active growth. Telogen is the resting and shedding phase, when hair is not actively growing in the same way as it is during anagen.",
-          "All hairs are not synchronized in one stage at the same time. A series of appropriately timed treatments is therefore needed to progressively target different hairs as they enter a responsive growth stage.",
-        ],
-        bullets: [
-          "Intervals depend on the body area and observed regrowth.",
-          "Coarse, dark hair often responds differently from fine or light-colored hair.",
-          "Hormonal factors can influence facial and body-hair regrowth.",
-          "Maintenance may be discussed after the initial course.",
+          "Hair is most responsive during anagen, the active growth phase. In catagen, growth slows. In telogen, the hair rests before it sheds. Because neighbouring hairs are often in different phases, repeating a session very soon does not catch all of them in active growth.",
+          "The provider can adjust spacing to the area and the regrowth you see. Dark, coarse hair often responds more readily than fine or light hair. Hormones can affect regrowth, especially on the face, and some people need maintenance after their first course.",
         ],
       },
       {
         id: "what-to-expect",
-        title: "What to expect during the appointment",
+        title: "During the appointment",
         paragraphs: [
-          "The team reviews the treatment area, recent sun exposure, medicines, skin sensitivity, and prior reactions. The area is prepared, protective eyewear is used, and the handpiece is applied in a planned pattern. Clients often describe warmth or a brief snapping sensation, but comfort varies.",
+          "Tell the provider about a recent tan, new medicines or a reaction to a previous session. After checking the area, the provider prepares the skin and supplies protective eyewear. You may feel warmth or a brief snapping sensation as the handpiece passes over the area.",
         ],
       },
     ],
     beforecare: [
-      "Avoid waxing, plucking, or threading the treatment area before the session because the follicle must remain present.",
-      "Follow the clinic's shaving timing and arrive with clean skin unless told otherwise.",
-      "Disclose tanning, photosensitizing medicines, active irritation, pregnancy, and recent procedures.",
+      "Leave the follicle in place by avoiding waxing, plucking and threading before treatment.",
+      "Follow the clinic's instructions for shaving and arrive with clean skin unless told otherwise.",
+      "Mention recent procedures, tanning, irritation, pregnancy and medicines that make you sensitive to light.",
     ],
     aftercare: [
-      "Use gentle cleansing and avoid heavy friction, heat, and irritating actives while the area feels sensitive.",
-      "Use sun protection on exposed areas and follow the clinic's area-specific instructions.",
-      "Do not scratch, pick, or treat temporary redness aggressively.",
+      "Clean the area gently and avoid rubbing, excess heat and irritating products while it feels sensitive.",
+      "Protect exposed areas from the sun and follow the instructions for the area treated.",
+      "Leave temporary redness alone. Scratching or picking can injure the skin.",
     ],
     unsuitable: [
-      "Active infection, open wounds, significant irritation, or a fresh tan in the treatment area",
-      "Pregnancy, or a medicine/health history that requires clearance",
-      "Hair color or density unlikely to respond well to the selected device",
+      "A fresh tan, broken skin, active infection or significant irritation in the area",
+      "Pregnancy or a health or medication history that needs clearance",
+      "Hair colour or density that gives the device a poor target",
     ],
     contactClinic: [
-      "Blistering",
-      "Severe or increasing pain",
+      "Blisters",
+      "Severe or worsening pain",
       "Marked swelling",
-      "Signs of infection",
+      "Signs of infection, such as increasing redness or discharge",
     ],
-    faqs: withStandardFaqs([
+    faqs: [
       {
-        question: "Does diode laser remove hair permanently?",
+        question: "Will the hair ever grow back?",
         answer:
-          "It is more accurate to describe the service as long-term hair reduction. Regrowth, hormones, treatment area, and maintenance needs vary.",
+          "Long-lasting hair reduction is the goal. Regrowth varies by area and hormonal factors, and maintenance may be needed.",
       },
       {
-        question: "Is diode laser suitable for morena skin?",
+        question: "Can I have treatment on morena skin?",
         answer:
-          "It may be suitable when the device, settings, cooling, and operator experience are appropriate. A skin assessment and careful test approach may be recommended.",
+          "It may be suitable. Ask about the provider's experience with your skin tone and how they choose settings, cooling and any test area.",
       },
       {
-        question: "Can I wax between sessions?",
+        question: "What can I do about regrowth between visits?",
         answer:
-          "Waxing or plucking can interfere with the follicle target. Ask the clinic which temporary hair-removal methods are acceptable between visits.",
+          "Ask whether shaving is appropriate for your schedule. Waxing and plucking remove the hair the laser needs to target.",
       },
-    ]),
-    references: laserReferences,
+      {
+        question: "What if I recently tanned?",
+        answer:
+          "Tell your provider before the visit. A recent tan can change how the skin responds and may mean rescheduling.",
+      },
+      {
+        question: "What does a pulse feel like?",
+        answer:
+          "Some people feel a quick snap or warmth. Tell the provider if the sensation becomes unusually painful.",
+      },
+    ],
+    references: [
+      {
+        title: "AAD: Laser hair removal FAQs",
+        url: "https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs",
+      },
+      {
+        title: "AAD: Preparing for laser hair removal",
+        url: "https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-preparation",
+      },
+    ],
     relatedArticles: ["why-underarms-become-dark"],
     relatedTreatments: [{ label: "4D Diode Laser Hair Reduction", href: "/diode-laser" }],
   },
   {
     slug: "pico-laser-facial-pigmentation",
-    title: "Pico Laser for Facial Pigmentation, Acne Marks, Sun Spots, and Uneven Skin Tone",
+    title: "Pico laser for dark spots, acne marks and uneven tone",
     excerpt:
-      "What picosecond laser technology may address, why pigment assessment matters, and how to protect recovery.",
+      "Learn which dark marks may respond to Pico laser, when melasma needs a different plan, and what to watch for during recovery.",
     category: "laser-treatments",
     tags: ["pico laser", "pigmentation", "acne marks"],
     heroImage: "/images/optimized/treatments/pico-face/pico-face-treatment.webp",
@@ -232,79 +193,102 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
     status: "medical-review-required",
     published: false,
     publishedAt: "2026-07-19",
-    updatedAt: "2026-07-19",
-    readingMinutes: 8,
-    seoTitle: "Pico Laser for Facial Pigmentation",
+    updatedAt: "2026-11-12",
+    readingMinutes: 3,
+    seoTitle: "Pico laser for dark spots, acne marks and uneven tone",
     metaDescription:
-      "Learn how Pico laser is considered for pigmentation, acne marks, sun spots, and uneven tone, including downtime and sun protection.",
+      "Learn which dark marks may respond to Pico laser, when melasma needs a different plan, and what to watch for during recovery.",
     keyTakeaways: [
-      "Picosecond devices deliver extremely short pulses that interact with selected pigment targets.",
-      "Acne marks are not the same as active acne, and melasma requires especially careful assessment.",
-      "Sun protection and conservative settings matter because post-inflammatory pigmentation can occur.",
+      "A picosecond laser delivers light in very short pulses.",
+      "A flat brown acne mark, an active breakout and a scar need different assessments.",
+      "Irritation after treatment can leave darker pigment, so settings and sun protection matter.",
     ],
     sections: [
       {
-        id: "technology",
-        title: "What Pico laser technology means",
+        id: "concerns",
+        title: "Start with the kind of mark you have",
         paragraphs: [
-          "Pico refers to pulse duration measured in picoseconds. Short pulses can create photoacoustic effects that fragment selected pigment while limiting prolonged heat delivery. The wavelength, handpiece, fluence, and treatment mode still determine what the device actually does.",
+          "Freckles, sun spots, acne marks and melasma can all look brown. A flat mark that remains after a pimple settles may be post-inflammatory hyperpigmentation, which means extra pigment after inflammation. An inflamed pimple needs an acne plan of its own.",
+          "Melasma can flare with light exposure, hormonal changes or irritation. A clinician may start with sun protection and skincare and consider a laser later for selected cases.",
         ],
       },
       {
-        id: "concerns",
-        title: "Pigmentation concerns are not all the same",
+        id: "technology",
+        title: "How a short pulse targets pigment",
         paragraphs: [
-          "Sun spots, post-acne marks, melasma, freckles, and deeper pigment patterns can look similar but behave differently. Active acne needs its own plan, while a flat dark mark left after acne may be approached as post-inflammatory pigmentation.",
-          "Melasma can recur or worsen with heat, light, hormones, and irritation. Laser is not automatically the first or only option, so professional assessment and consistent sun protection are central to planning.",
+          "A picosecond is one trillionth of a second. A short pulse can create a pressure effect that breaks up some pigment targets. The wavelength, handpiece, amount of energy and treatment mode still affect the result and the risk of colour changes.",
         ],
       },
       {
         id: "what-to-expect",
-        title: "What to expect",
+        title: "What the treated spots may look like",
         paragraphs: [
-          "After cleansing and assessment, protective eyewear is applied and the provider treats the selected area with settings chosen for the concern and skin response. Temporary warmth, redness, mild swelling, darkening of spots, or sensitivity may occur. Downtime depends on the treatment mode and intensity.",
+          "After cleansing, you wear protective eyewear while the provider works over the chosen areas. Warmth, mild swelling and redness are possible. Some spots may darken temporarily. Ask how long sensitivity or flaking is expected for the settings used.",
         ],
       },
     ],
     beforecare: [
-      "Limit tanning and disclose recent sun exposure, peels, lasers, retinoids, and photosensitizing medicines.",
-      "Arrive with clean skin and follow any instruction to pause irritating active ingredients.",
-      "Tell the clinic about cold sores, keloid tendency, pregnancy, active infection, or prior pigment changes.",
+      "Avoid tanning and tell the provider about recent sun exposure, peels, laser sessions and medicines that increase sensitivity to light.",
+      "Ask which retinoids or other irritating products to pause and arrive with clean skin if instructed.",
+      "Report cold sores, raised scars, pregnancy, infection or a history of pigment changes after treatment.",
     ],
     aftercare: [
-      "Use gentle cleanser, moisturizer, and broad-spectrum sunscreen as directed.",
-      "Avoid picking flaking or darkened spots and pause harsh actives until cleared.",
-      "Reduce unnecessary heat and direct sun during early recovery.",
+      "Use a gentle cleanser, moisturiser and broad-spectrum sunscreen as instructed.",
+      "Leave darkened or flaking spots alone. Wait for clearance before resuming harsh actives.",
+      "Limit direct sun and unnecessary heat while the area is sensitive.",
     ],
     unsuitable: [
-      "Active infection, open lesions, or inflamed acne in the planned area",
-      "Recent tanning or uncontrolled photosensitivity",
-      "Pregnancy or medical factors needing clinician clearance",
+      "An infection, open lesion or inflamed acne in the treatment area",
+      "Recent tanning or uncontrolled sensitivity to light",
+      "Pregnancy or another health issue requiring clearance",
     ],
     contactClinic: [
-      "Blistering",
-      "Increasing swelling",
+      "Blisters",
+      "Swelling that increases",
       "Severe pain",
       "Spreading rash or discharge",
     ],
-    faqs: withStandardFaqs([
+    faqs: [
       {
-        question: "Can Pico laser cure melasma?",
+        question: "Will Pico cure melasma?",
         answer:
-          "No treatment should be presented as a melasma cure. Melasma often needs long-term trigger control, sun protection, skincare, and carefully selected procedures.",
+          "Melasma can return. A long-term plan usually includes sun protection and treatment for triggers. A dermatologist can assess whether a laser belongs in that plan.",
       },
       {
-        question: "Can Pico laser treat active acne?",
+        question: "Should I book Pico while I still have breakouts?",
         answer:
-          "Active acne and leftover marks are different concerns. The provider should assess inflammation first and may recommend another acne-focused plan.",
+          "Have the active acne assessed first. Treatment for inflammation may differ from treatment for the marks it leaves.",
       },
       {
-        question: "Will my spots become darker first?",
+        question: "Why do a few spots look darker after treatment?",
         answer:
-          "Temporary darkening or a peppered appearance can occur with some pigment treatments. Follow aftercare and contact the clinic if the reaction is severe or worsening.",
+          "Some pigment treatments cause temporary darkening or tiny dark dots. Follow the instructions for your session and call if the reaction worsens.",
       },
-    ]),
-    references: laserReferences,
+      {
+        question: "How can I tell a dark acne mark from a scar?",
+        answer:
+          "A flat mark changes the colour of the skin. A scar changes its texture and may be indented or raised. A clinician can assess both if they occur together.",
+      },
+      {
+        question: "What should I tell the clinic if a past laser left dark marks?",
+        answer:
+          "Describe the device or procedure if you know it, when the marks developed and how long they lasted. This helps the provider assess your risk before recommending a setting.",
+      },
+    ],
+    references: [
+      {
+        title: "Systematic review of picosecond lasers in dermatology",
+        url: "https://pubmed.ncbi.nlm.nih.gov/32282094/",
+      },
+      {
+        title: "AAD: Melasma diagnosis and treatment",
+        url: "https://www.aad.org/public/diseases/a-z/melasma-treatment",
+      },
+      {
+        title: "AAD: Acne scar treatment",
+        url: "https://www.aad.org/public/diseases/Acne/derm-treat/Scars/treatment",
+      },
+    ],
     relatedArticles: ["pico-laser-facial-rejuvenation", "why-underarms-become-dark"],
     relatedTreatments: [
       { label: "Pico Glow Face", href: "/treatments/pico-glow-face" },
@@ -313,9 +297,9 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
   },
   {
     slug: "why-underarms-become-dark",
-    title: "Why Underarms Become Dark and How Professional Treatments May Help",
+    title: "Why underarms darken and when to get them checked",
     excerpt:
-      "Friction, shaving, irritation, ingrown hairs, and health factors can all influence underarm discoloration.",
+      "Shaving, friction and deodorant reactions can leave dark marks. Learn when a change in underarm skin needs a medical assessment.",
     category: "skin-concerns",
     tags: ["underarms", "pigmentation", "ingrown hairs"],
     heroImage: "/images/optimized/treatments/pico-underarm/pico-underarm-treatment.webp",
@@ -325,74 +309,97 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
     status: "medical-review-required",
     published: false,
     publishedAt: "2026-07-19",
-    updatedAt: "2026-07-19",
-    readingMinutes: 7,
-    seoTitle: "Why Underarms Become Dark | Skin Education",
+    updatedAt: "2026-11-12",
+    readingMinutes: 3,
+    seoTitle: "Why underarms darken and when to get them checked",
     metaDescription:
-      "Understand common causes of underarm darkening, gentle home care, and when diode, Pico, or professional peel assessment may help.",
+      "Shaving, friction and deodorant reactions can leave dark marks. Learn when a change in underarm skin needs a medical assessment.",
     keyTakeaways: [
-      "Underarm darkening is often influenced by repeated irritation rather than a simple lack of cleansing.",
-      "Harsh bleaching, scrubbing, and fragranced products can worsen inflammation.",
-      "Sudden, thick, widespread, or symptomatic discoloration should be medically assessed.",
+      "Hair shadow and the normal shape of a skin fold can affect its appearance.",
+      "Repeated irritation can leave darker pigment after the skin settles.",
+      "New, thickened or widespread dark patches need medical assessment.",
     ],
     sections: [
       {
         id: "common-causes",
-        title: "Common reasons underarms look darker",
+        title: "Look for irritation and changes in texture",
         paragraphs: [
-          "Shaving, friction from clothing, ingrown hairs, deodorant irritation, and inflammation can leave post-inflammatory pigmentation. Natural folds and hair shadow can also change how the area looks.",
-          "Some patterns may relate to hormonal or metabolic conditions. Aesthetic treatment should not delay medical evaluation when the change is sudden, thickened, itchy, painful, or present in several body folds.",
-        ],
-      },
-      {
-        id: "professional-options",
-        title: "How professional care may be planned",
-        paragraphs: [
-          "Diode hair reduction may reduce the repeated shaving cycle for suitable hair and skin. Pico laser or a professional peel may be considered for selected pigment concerns. The safest plan depends on the cause, current irritation, skin tone, and prior reactions.",
+          "Notice whether the area stings after deodorant or whether bumps appear after shaving. Friction from clothing, ingrown hairs and skin inflammation can all leave darker marks. Scrubbing or layering bleaching products can add irritation.",
+          "A sudden change, thickened skin or similar patches on the neck or other folds can point to a medical cause. If the area is itchy, painful or changing quickly, get it checked before trying a cosmetic treatment.",
         ],
       },
       {
         id: "what-to-expect",
-        title: "What to expect from an assessment",
+        title: "What to bring to an assessment",
         paragraphs: [
-          "The provider asks about products, hair-removal habits, symptoms, medicines, and health history before examining the area. Treatment may be postponed until active irritation settles or medical causes are reviewed.",
+          "Tell the provider when the colour changed and whether it followed a new deodorant, a change in hair removal or a rash. Bring the names of products that caused symptoms. The provider may wait for the skin to settle or refer you for medical evaluation.",
+        ],
+      },
+      {
+        id: "professional-options",
+        title: "Choosing care for the cause",
+        paragraphs: [
+          "For suitable hair and skin, diode laser may reduce how often you need to shave. Selected pigment concerns may be assessed for Pico laser or a professional peel. The choice depends on the cause, skin tone, active irritation and how the area has reacted in the past.",
         ],
       },
     ],
     beforecare: [
-      "Stop aggressive scrubbing and avoid testing several new brightening products at once.",
-      "Bring or list products that have caused burning, itching, or rash.",
-      "Follow the specific shaving or active-ingredient instructions for the selected procedure.",
+      "Pause harsh scrubs and avoid testing several new products together.",
+      "Bring the names or photos of products that caused stinging, itching or a rash.",
+      "Follow the preparation instructions for the procedure selected after assessment.",
     ],
     aftercare: [
-      "Reduce friction and use bland, fragrance-free care while the area recovers.",
-      "Avoid scratching, picking ingrown hairs, and applying unapproved bleaching mixtures.",
-      "Follow the separate aftercare given for diode, Pico, or peel treatment.",
+      "Wear clothing that limits rubbing and use gentle, fragrance-free care while the area recovers.",
+      "Leave ingrown hairs and irritated patches alone. Avoid unapproved bleaching mixtures.",
+      "Follow the specific instructions for diode, Pico or a peel.",
     ],
     unsuitable: [
-      "Active rash, infection, wounds, or significant inflammation",
-      "Unexplained or rapidly changing discoloration awaiting medical assessment",
-      "Known reactions to proposed products or procedures",
+      "Rash, infection, wounds or significant inflammation",
+      "Darkening that is unexplained or changing quickly",
+      "A known reaction to a proposed product or procedure",
     ],
-    contactClinic: ["Blistering", "Spreading rash", "Discharge", "Severe or increasing pain"],
-    faqs: withStandardFaqs([
+    contactClinic: ["Blistering", "A rash that spreads", "Discharge", "Severe or worsening pain"],
+    faqs: [
       {
-        question: "Is dark underarm skin caused by poor hygiene?",
+        question: "Does darker underarm skin mean I need to wash more?",
         answer:
-          "Not necessarily. Friction, irritation, hair shadow, inflammation, products, and health factors can all contribute.",
+          "Colour can reflect hair shadow, natural folds or irritation. Washing harder can make irritated skin worse.",
       },
       {
-        question: "Can diode laser whiten underarms?",
+        question: "Will diode laser lighten the underarms?",
         answer:
-          "Diode treatment targets hair rather than pigment. Reducing shaving-related irritation may improve the routine, but pigment needs its own assessment.",
+          "Diode targets hair. Shaving less may reduce one source of irritation, but existing dark patches need their own assessment.",
       },
       {
-        question: "Should I use strong bleaching products?",
+        question: "When should I see a doctor about the colour?",
         answer:
-          "Harsh products can worsen irritation and pigmentation. Use only a plan appropriate for the area and your skin sensitivity.",
+          "Get checked if the patches appear suddenly, thicken, spread to other folds or come with itching or pain.",
       },
-    ]),
-    references: laserReferences,
+      {
+        question: "Should I change deodorants if the skin stings?",
+        answer:
+          "Pause the product that seems to trigger the reaction and tell your clinician what you used. Persistent itching or a rash needs assessment.",
+      },
+      {
+        question: "What is acanthosis nigricans?",
+        answer:
+          "It causes thicker, velvety patches, often in folds such as the neck or underarms. A clinician can check for underlying causes, including insulin resistance.",
+      },
+    ],
+    references: [
+      {
+        title: "AAD: Laser hair removal FAQs",
+        url: "https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs",
+      },
+      {
+        title: "AAD: Acanthosis nigricans diagnosis and treatment",
+        url: "https://www.aad.org/public/diseases/a-z/acanthosis-nigricans-treatment",
+      },
+      {
+        title: "AAD: Chemical peel FAQs",
+        url: "https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs",
+      },
+    ],
     relatedArticles: ["diode-laser-hair-removal-guide", "pico-laser-facial-pigmentation"],
     relatedTreatments: [
       { label: "4D Diode Laser", href: "/diode-laser" },
@@ -401,9 +408,9 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
   },
   {
     slug: "glp-1-weight-management-programs",
-    title: "Understanding GLP-1-Based Weight Management Programs",
+    title: "GLP-1 medicines for weight management",
     excerpt:
-      "Why prescription-supported weight management requires medical assessment, gradual monitoring, nutrition, and long-term planning.",
+      "What a doctor checks before prescribing a GLP-1 medicine, how follow-up works, and which symptoms need urgent attention.",
     category: "weight-management",
     tags: ["GLP-1", "weight management", "medical consultation"],
     heroImage: "/images/optimized/clinic/esclare-naga-treatment-room-v2.webp",
@@ -413,79 +420,101 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
     status: "medical-review-required",
     published: false,
     publishedAt: "2026-07-19",
-    updatedAt: "2026-07-19",
-    readingMinutes: 9,
-    seoTitle: "GLP-1 Weight Management Programs",
+    updatedAt: "2026-11-12",
+    readingMinutes: 3,
+    seoTitle: "GLP-1 medicines for weight management",
     metaDescription:
-      "A cautious guide to GLP-1-based weight management, medical screening, monitoring, side effects, and lifestyle support.",
+      "What a doctor checks before prescribing a GLP-1 medicine, how follow-up works, and which symptoms need urgent attention.",
     keyTakeaways: [
-      "GLP-1 pathways influence appetite, fullness, and glucose regulation, but prescription treatment is not suitable for everyone.",
-      "A doctor must review medical history, medicines, pregnancy plans, and relevant risks before prescribing.",
-      "Nutrition, hydration, movement, sleep, monitoring, and follow-up remain part of long-term care.",
+      "GLP-1 is a hormone involved in fullness, digestion and blood sugar.",
+      "A doctor reviews your health, medicines and pregnancy plans before recommending a prescription.",
+      "Food intake, hydration, activity and follow-up still matter while you take the medicine.",
     ],
     sections: [
       {
         id: "what-is-glp1",
-        title: "What GLP-1 means",
+        title: "How these medicines affect appetite",
         paragraphs: [
-          "Glucagon-like peptide-1 is a hormone involved in appetite, fullness, digestion, and glucose-related signaling. Prescription medicines that act on this pathway may support weight management for eligible patients alongside reduced-calorie nutrition and physical activity.",
+          "Glucagon-like peptide-1, or GLP-1, helps signal fullness and plays a role in blood sugar regulation. Medicines that act on this pathway can support weight management for eligible patients alongside changes in food intake and physical activity. Each product has its own approved uses and safety instructions.",
         ],
       },
       {
         id: "medical-supervision",
-        title: "Why medical supervision is essential",
+        title: "What a prescriber needs to know",
         paragraphs: [
-          "Eligibility depends on more than a desired number on the scale. A doctor may review weight history, BMI in clinical context, related conditions, medicines, laboratory results, eating patterns, gastrointestinal history, and pregnancy plans.",
-          "Dose changes and product-specific instructions must come from the prescriber. The website does not provide dosing advice or replace the official medication guide.",
+          "Bring your weight history, current medicines and any prior reactions to weight-management products. The doctor may also review weight-related conditions, eating patterns, lab results, digestive symptoms and pregnancy plans. Body mass index, or BMI, is considered alongside your health history.",
+          "Ask which product and indication are authorised in the Philippines. The U.S. labels in the references explain the named products in the United States. Your prescriber should use the local product information for the medicine you receive.",
         ],
       },
       {
         id: "what-to-expect",
-        title: "What to expect in a structured program",
+        title: "What follow-up is for",
         paragraphs: [
-          "A program may include an initial medical consultation, baseline review, nutrition and activity support, gradual prescription adjustments when appropriate, symptom checks, and follow-up decisions based on response and tolerability.",
+          "At follow-up, tell your doctor how much you can comfortably eat and drink, how your appetite has changed and whether you have ongoing nausea, vomiting or other symptoms. The prescriber decides whether to adjust treatment based on your response and side effects. Follow-up is also a time to discuss activity, nutrition, sleep and longer-term care.",
         ],
       },
     ],
     beforecare: [
-      "Prepare a complete medicine and supplement list and disclose prior weight-management medicines.",
-      "Discuss pregnancy, breastfeeding, gallbladder, pancreatic, kidney, gastrointestinal, endocrine, and mental-health history.",
-      "Do not start, stop, share, or combine prescription medicines without the prescriber.",
+      "List all medicines, supplements and previous weight-management products.",
+      "Discuss pregnancy and breastfeeding, and any history involving the gallbladder, pancreas, kidneys, digestion, endocrine conditions or mental health.",
+      "Check with the prescriber before starting, stopping, sharing or combining medicines.",
     ],
     aftercare: [
-      "Follow the prescription label and clinic monitoring plan exactly.",
-      "Prioritize hydration and the individualized nutrition plan, and report persistent side effects.",
-      "Keep follow-up appointments so benefits, tolerability, and ongoing suitability can be reassessed.",
+      "Follow the instructions for your prescribed product and keep your monitoring visits.",
+      "Discuss a food and hydration plan you can manage. Report side effects that persist.",
+      "Ask the prescriber what to do if a dose is missed or you cannot tolerate the medicine.",
     ],
     unsuitable: [
-      "Pregnancy, breastfeeding, or planning pregnancy without prescriber guidance",
-      "A contraindication or important warning listed for the specific medicine",
-      "A medical or medication history requiring another approach",
+      "Pregnancy, breastfeeding or pregnancy plans that need discussion with the prescriber",
+      "A contraindication or warning in the label for the specific product",
+      "A health or medication history that calls for another approach",
     ],
     contactClinic: [
-      "Severe or persistent abdominal pain",
-      "Repeated vomiting or inability to keep fluids down",
-      "Signs of dehydration or a serious allergic reaction",
-      "Any severe, rapidly worsening, or concerning symptom",
+      "Severe or persistent abdominal pain, repeated vomiting or inability to keep fluids down need prompt medical assessment.",
+      "Seek emergency care for trouble breathing or swelling of the lips, tongue or throat.",
+      "Get medical help for severe, rapidly worsening symptoms or signs of dehydration.",
     ],
-    faqs: withStandardFaqs([
+    faqs: [
       {
-        question: "Is GLP-1 treatment a quick cosmetic injection?",
+        question: "Can I buy a slimming injection and start it myself?",
         answer:
-          "No. These are prescription medicines with important warnings, monitoring needs, and product-specific instructions. They require doctor-led care.",
+          "These medicines require a prescription. The doctor needs to check which product is appropriate, how it should be used and what to monitor.",
       },
       {
-        question: "Can medication replace nutrition and exercise?",
+        question: "What if I am eating very little?",
         answer:
-          "Medication is one part of care. Sustainable nutrition, activity, sleep, behavior support, and follow-up remain important.",
+          "Tell your prescriber. The plan may need to change if you cannot get enough food or fluids or have symptoms that persist.",
       },
       {
-        question: "Will everyone lose the same amount of weight?",
+        question: "Can I expect the same weight change as someone else?",
         answer:
-          "No. Response and side effects vary, and treatment may be changed or stopped based on the prescriber's assessment.",
+          "Response and side effects differ. Your doctor will reassess whether the treatment is meeting your health goals.",
       },
-    ]),
-    references: weightReferences,
+      {
+        question: "What should I do if I take insulin or another diabetes medicine?",
+        answer:
+          "Review your medicines with your prescriber before starting. Some combinations can raise the risk of low blood sugar and may require a monitoring plan.",
+      },
+      {
+        question: "Should I tell the anaesthesia team I take one of these medicines?",
+        answer:
+          "Yes. Tell the team before an operation or procedure that uses sedation. They need to account for the effect on stomach emptying.",
+      },
+    ],
+    references: [
+      {
+        title: "U.S. FDA prescribing information: Wegovy (semaglutide)",
+        url: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/215256s029lbl.pdf",
+      },
+      {
+        title: "U.S. FDA prescribing information: Zepbound (tirzepatide)",
+        url: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/217806s042lbl.pdf",
+      },
+      {
+        title: "Philippine FDA product verification portal",
+        url: "https://verification.fda.gov.ph/",
+      },
+    ],
     relatedArticles: ["tirzepatide-weight-management-guide"],
     relatedTreatments: [
       { label: "Request a medical weight-management consultation", href: "/appointment-request" },
@@ -493,9 +522,9 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
   },
   {
     slug: "tirzepatide-weight-management-guide",
-    title: "Tirzepatide for Weight Management: What Clients Should Know Before Starting",
+    title: "Tirzepatide for weight management",
     excerpt:
-      "A doctor-review draft explaining tirzepatide's dual-pathway activity, assessment, monitoring, and safety responsibilities.",
+      "Doctor-review draft covering tirzepatide's two hormone pathways, prescription assessment, follow-up and urgent warning signs.",
     category: "weight-management",
     tags: ["tirzepatide", "GIP", "GLP-1"],
     heroImage: "/images/optimized/clinic/esclare-naga-preparation-area-v2.webp",
@@ -505,86 +534,109 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
     status: "medical-review-required",
     published: false,
     publishedAt: "2026-07-19",
-    updatedAt: "2026-07-19",
-    readingMinutes: 9,
-    seoTitle: "Tirzepatide Weight Management Guide",
+    updatedAt: "2026-11-12",
+    readingMinutes: 3,
+    seoTitle: "Tirzepatide for weight management",
     metaDescription:
-      "What clients should know about tirzepatide, GIP and GLP-1 activity, doctor assessment, side effects, follow-up, and precautions.",
+      "Doctor-review draft covering tirzepatide's two hormone pathways, prescription assessment, follow-up and urgent warning signs.",
     keyTakeaways: [
-      "Tirzepatide acts at GIP and GLP-1 receptors and is a prescription medicine, not an over-the-counter slimming product.",
-      "The official product label contains contraindications, warnings, dose progression, and storage instructions that must guide care.",
-      "Results vary, and long-term planning includes nutrition, hydration, activity, monitoring, and follow-up.",
+      "Tirzepatide acts on both GIP and GLP-1 receptors.",
+      "The product label and your medical history guide prescription decisions.",
+      "Tell your prescriber promptly if side effects interfere with eating or drinking.",
     ],
     sections: [
       {
         id: "dual-pathway",
-        title: "Understanding GIP and GLP-1 activity",
+        title: "How tirzepatide works",
         paragraphs: [
-          "Tirzepatide is described as a glucose-dependent insulinotropic polypeptide, or GIP, receptor and GLP-1 receptor agonist. In plain language, it acts on two hormone-signaling pathways involved in appetite, fullness, and glucose-related regulation.",
+          "Tirzepatide acts on receptors for GIP, or glucose-dependent insulinotropic polypeptide, and GLP-1, or glucagon-like peptide-1. These are hormone pathways involved in blood sugar regulation and appetite. The medicine requires a prescription.",
         ],
       },
       {
         id: "assessment",
-        title: "Assessment comes before prescription",
+        title: "Questions to bring to your doctor",
         paragraphs: [
-          "A prescriber should review weight-related health needs, current medicines, prior reactions, relevant laboratory information, gastrointestinal and endocrine history, and pregnancy plans. Tirzepatide should not be borrowed, shared, or combined with another product without medical direction.",
+          "Tell the prescriber about your weight-related health needs, current medicines, previous reactions, lab results and digestive or endocrine conditions. Discuss pregnancy plans and any personal or family history of medullary thyroid cancer or multiple endocrine neoplasia type 2. The U.S. Zepbound label lists both histories as contraindications.",
+          "A Philippine FDA listing for Mounjaro identifies a registered tirzepatide product. Ask your doctor to check the locally authorised indication for the specific product they propose. The U.S. Zepbound label does not establish approval or availability in the Philippines.",
         ],
       },
       {
         id: "what-to-expect",
-        title: "What to expect from follow-up",
+        title: "What to report at follow-up",
         paragraphs: [
-          "The prescriber determines product selection and gradual dose progression using the current official label and the patient's response. Follow-up reviews appetite changes, gastrointestinal symptoms, hydration, nutrition, activity, and whether treatment remains appropriate.",
+          "Tell the prescriber about appetite changes, digestive symptoms and how much fluid you can keep down. Discuss food intake, activity and whether the plan still fits your health needs. The prescriber uses the official product information and your response to decide on any changes.",
         ],
       },
     ],
     beforecare: [
-      "Bring the exact names and doses of medicines, supplements, and prior injectable products.",
-      "Discuss pregnancy plans and personal or family medical history requested by the prescriber.",
-      "Read the official medication guide supplied with the prescribed product.",
+      "Bring names and doses of all medicines, supplements and previous injectables.",
+      "Tell your doctor if you use oral contraception or have pregnancy plans. Ask whether the product requires any change to contraception.",
+      "Read the guide for the medicine prescribed to you. Avoid borrowing, sharing or combining it with other products without medical direction.",
     ],
     aftercare: [
-      "Follow the prescribed schedule and storage instructions; do not improvise missed-dose or dose-change decisions.",
-      "Maintain hydration and the individualized nutrition plan, including adequate protein when advised.",
-      "Use resistance exercise only when appropriate for your health and plan.",
+      "Follow the prescribed schedule and storage directions. Ask the prescriber how to handle a missed dose.",
+      "Discuss hydration and food intake, including protein if advised.",
+      "Use resistance exercise if appropriate for your health and treatment plan.",
     ],
     unsuitable: [
-      "Anyone with a label-listed contraindication for the prescribed product",
-      "Pregnancy or planned pregnancy without direct prescriber guidance",
-      "A health or medicine history that makes another plan safer",
+      "A contraindication on the exact product label, including certain thyroid cancer histories or a serious allergy to tirzepatide under the U.S. Zepbound label",
+      "Pregnancy or a pregnancy plan that needs prescriber guidance",
+      "A health condition or medicine interaction that calls for a different plan",
     ],
     contactClinic: [
-      "Severe or persistent abdominal pain",
-      "Repeated vomiting, dehydration, or inability to eat or drink",
-      "Symptoms of a serious allergic reaction",
-      "Any urgent symptom listed in the medication guide",
+      "Seek prompt medical assessment for severe or persistent abdominal pain, repeated vomiting or inability to keep fluids down.",
+      "Seek emergency care for trouble breathing or swelling of the face, lips, tongue or throat.",
+      "Follow the medication guide for other urgent symptoms and report possible dehydration.",
     ],
-    faqs: withStandardFaqs([
+    faqs: [
       {
-        question: "Is tirzepatide the same as a single-pathway GLP-1 medicine?",
+        question: "How does tirzepatide differ from a GLP-1-only medicine?",
         answer:
-          "No. Tirzepatide acts at both GIP and GLP-1 receptors. Product choice requires an individualized clinical assessment.",
+          "Tirzepatide acts on two receptors, GIP and GLP-1. Product selection depends on your health and the specific indication.",
       },
       {
-        question: "Can I choose my own dose progression?",
+        question: "Can I adjust the prescription if my appetite changes?",
         answer:
-          "No. Dose progression is product-specific and must be directed by the prescriber using the current official label and your tolerability.",
+          "Speak with the prescriber. They decide whether to change treatment using the product label and how well you tolerate it.",
       },
       {
-        question: "Can tirzepatide be used during pregnancy?",
+        question: "What if I become pregnant while taking it for weight management?",
         answer:
-          "Pregnancy planning and precautions require direct medical guidance. Do not use weight-management medication during pregnancy unless specifically managed by an appropriate clinician.",
+          "Contact your prescriber promptly. The U.S. Zepbound label directs patients to discontinue it when pregnancy is recognised.",
       },
-    ]),
-    references: weightReferences,
+      {
+        question: "What if I have severe belly pain that will not go away?",
+        answer:
+          "Seek urgent medical care, especially if the pain spreads to your back or you are vomiting. The U.S. label lists persistent severe abdominal pain as a possible sign of pancreatitis.",
+      },
+      {
+        question: "Which tirzepatide product is registered in the Philippines?",
+        answer:
+          "The Philippine FDA registry lists a Mounjaro product. Ask your prescriber to verify the exact presentation and local indication before treatment.",
+      },
+    ],
+    references: [
+      {
+        title: "U.S. FDA prescribing information: Zepbound (tirzepatide)",
+        url: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/217806s042lbl.pdf",
+      },
+      {
+        title: "Philippine FDA product registry: Mounjaro (tirzepatide), DR-XY49503",
+        url: "https://verification.fda.gov.ph/ALL_DrugProductsview.php?export=pdf&registration_number=DR-XY49503",
+      },
+      {
+        title: "Philippine FDA product verification portal",
+        url: "https://verification.fda.gov.ph/",
+      },
+    ],
     relatedArticles: ["glp-1-weight-management-programs"],
     relatedTreatments: [{ label: "Request a doctor consultation", href: "/appointment-request" }],
   },
   {
     slug: "pico-laser-facial-rejuvenation",
-    title: "Pico Laser for Brighter-Looking Skin, Texture, and Facial Rejuvenation",
+    title: "Pico laser for texture and facial rejuvenation",
     excerpt:
-      "How Pico treatment differs from traditional resurfacing concepts, where it may fit, and what it cannot promise.",
+      "How providers choose a Pico treatment mode for uneven tone or texture, and what recovery can look like.",
     category: "laser-treatments",
     tags: ["pico laser", "texture", "rejuvenation"],
     heroImage: "/images/optimized/treatments/pico-face/pico-face-overview.webp",
@@ -594,81 +646,104 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
     status: "medical-review-required",
     published: false,
     publishedAt: "2026-07-19",
-    updatedAt: "2026-07-19",
-    readingMinutes: 7,
-    seoTitle: "Pico Laser Facial Rejuvenation",
+    updatedAt: "2026-11-12",
+    readingMinutes: 3,
+    seoTitle: "Pico laser for texture and facial rejuvenation",
     metaDescription:
-      "Learn about Pico laser for brighter-looking skin, texture, acne-mark appearance, downtime, intervals, and aftercare.",
+      "How providers choose a Pico treatment mode for uneven tone or texture, and what recovery can look like.",
     keyTakeaways: [
-      "Pico treatment can be delivered in different modes; it is not automatically equivalent to ablative resurfacing.",
-      "Improvement is progressive and depends on the concern, settings, skin response, and treatment course.",
-      "Brightening means improving uneven or dull appearance, not changing natural skin color.",
+      "Different Pico modes treat different concerns.",
+      "Texture, fine lines and colour changes need separate assessment.",
+      "A brighter appearance means addressing uneven or dull-looking areas. Natural skin colour is part of the treatment plan.",
     ],
     sections: [
       {
         id: "rejuvenation",
-        title: "What facial rejuvenation can mean",
+        title: "Name the change you want to see",
         paragraphs: [
-          "In aesthetic care, rejuvenation may refer to improving the appearance of uneven pigment, rough texture, pores, fine lines, or selected acne marks. A Pico plan must identify which concern is being treated rather than use one setting for every goal.",
+          "If you point to an acne mark, the provider needs to see whether it is a flat patch of colour or a dip in the skin. A Pico setting selected for uneven pigment may differ from one chosen for rough texture or the appearance of pores and fine lines.",
         ],
       },
       {
         id: "limitations",
-        title: "Benefits and limitations",
+        title: "What a Pico treatment can address",
         paragraphs: [
-          "Pico treatment may support a clearer, more even, or refreshed appearance, but it cannot stop aging, erase every scar, or guarantee a particular shade or texture. Deeper scars and active skin disease may need another approach.",
+          "Some picosecond laser modes are used for selected texture and tone concerns. The response depends on the device, settings and your skin over the course of treatment. Deeper scars or active skin disease may call for a different approach. Ask which changes the clinician expects to see in your case.",
         ],
       },
       {
         id: "what-to-expect",
-        title: "What to expect",
+        title: "Plan around the recovery",
         paragraphs: [
-          "Treatment begins with assessment and cleansing, followed by protective eyewear and controlled passes over selected areas. Sensation and downtime vary by mode. Temporary redness, warmth, sensitivity, or darkening of pigment may occur.",
+          "The provider checks and cleans the area, gives you protective eyewear and treats it in controlled passes. The treated skin may feel warm or sensitive, look red or develop temporarily darker spots. Tell the provider if you have an upcoming event so you can plan around the expected recovery.",
         ],
       },
     ],
     beforecare: [
-      "Disclose active acne, cold sores, medicines, recent tanning, and recent procedures.",
-      "Pause irritating skincare only when instructed by the clinic.",
-      "Plan around important events until your expected recovery is understood.",
+      "Mention recent tanning, acne, cold sores, medicines and other procedures.",
+      "Ask which skincare products you should pause before the visit.",
+      "Discuss the likely recovery before scheduling close to an important event.",
     ],
     aftercare: [
-      "Use gentle skincare and broad-spectrum sunscreen.",
-      "Avoid picking, scrubbing, and unapproved actives while recovering.",
-      "Follow combination-treatment timing given by the provider.",
+      "Keep skincare gentle and protect treated skin with broad-spectrum sunscreen as instructed.",
+      "Avoid scrubbing or picking. Wait for guidance before restarting strong products.",
+      "Follow the timing set for any additional treatment.",
     ],
     unsuitable: [
-      "Active infection, open skin, or uncontrolled inflammation",
-      "Recent tanning or a history requiring modified settings or another treatment",
-      "Pregnancy or medical factors needing clearance",
+      "Active infection, open skin or uncontrolled inflammation",
+      "A recent tan or a history that requires another setting or procedure",
+      "Pregnancy or health factors requiring clearance",
     ],
-    contactClinic: ["Blistering", "Severe pain", "Marked swelling", "A reaction that worsens"],
-    faqs: withStandardFaqs([
+    contactClinic: ["Blisters", "Severe pain", "Marked swelling", "A reaction that gets worse"],
+    faqs: [
       {
-        question: "Is Pico laser the same as fractional CO2 laser?",
+        question: "How does Pico differ from fractional CO2 resurfacing?",
         answer:
-          "No. Devices and treatment modes differ in energy delivery, tissue interaction, downtime, and intended use.",
+          "The devices deliver energy differently. They can treat different concerns and have different recovery times. Ask which mode the provider is proposing for your skin.",
       },
       {
-        question: "Will Pico laser whiten my natural skin color?",
+        question: "What does brightening mean in this treatment?",
         answer:
-          "The goal is not permanent whitening or changing natural skin color. Treatment may be planned for selected uneven pigmentation or dull appearance.",
+          "The provider may aim to soften the appearance of selected uneven patches or dull areas. Ask which changes are realistic for your skin tone and concern.",
       },
       {
-        question: "Can Pico be combined with skincare or facials?",
+        question: "Can I book a facial on the same day?",
         answer:
-          "Sometimes, but sequencing matters. The clinic should decide what is appropriate before or after laser treatment.",
+          "Ask the provider before booking. Product choice and timing depend on how the laser will affect your skin.",
       },
-    ]),
-    references: laserReferences,
+      {
+        question: "Will my skin look smoother after one appointment?",
+        answer:
+          "That depends on the concern and the laser setting. Ask when the provider will reassess texture and whether a series makes sense.",
+      },
+      {
+        question: "What if I tend to develop dark marks after irritation?",
+        answer:
+          "Tell the provider before the procedure. Your response to past irritation can affect the plan, including the settings and recovery instructions.",
+      },
+    ],
+    references: [
+      {
+        title: "Systematic review of picosecond lasers in dermatology",
+        url: "https://pubmed.ncbi.nlm.nih.gov/32282094/",
+      },
+      {
+        title: "Clinical study of fractional picosecond laser for wrinkles and acne scars",
+        url: "https://pubmed.ncbi.nlm.nih.gov/34079185/",
+      },
+      {
+        title: "AAD: Acne scar treatment",
+        url: "https://www.aad.org/public/diseases/Acne/derm-treat/Scars/treatment",
+      },
+    ],
     relatedArticles: ["pico-laser-facial-pigmentation"],
     relatedTreatments: [{ label: "Pico Glow Face", href: "/treatments/pico-glow-face" }],
   },
   {
     slug: "mccm-professional-skincare-guide",
-    title: "MCCM Professional Skincare: Understanding Clinic Treatments and Home Care",
+    title: "MCCM professional skincare and home care",
     excerpt:
-      "How professional formulations differ from home care and why product selection starts with a skin assessment.",
+      "What to ask about a clinic product, what belongs in your home routine, and how to spot irritation when introducing something new.",
     category: "mccm-skin-science",
     tags: ["MCCM", "professional skincare", "home care"],
     heroImage: "/images/optimized/treatments/skin-support/skin-hydration-editorial.webp",
@@ -678,81 +753,100 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
     status: "medical-review-required",
     published: false,
     publishedAt: "2026-07-19",
-    updatedAt: "2026-07-19",
-    readingMinutes: 6,
-    seoTitle: "MCCM Professional Skincare Guide",
+    updatedAt: "2026-11-12",
+    readingMinutes: 3,
+    seoTitle: "MCCM professional skincare and home care",
     metaDescription:
-      "Understand professional MCCM skincare, clinic protocols, home care, consultation, and realistic expectations.",
+      "What to ask about a clinic product, what belongs in your home routine, and how to spot irritation when introducing something new.",
     keyTakeaways: [
-      "Professional-use and home-care products may differ in strength, delivery, and supervision.",
-      "Product selection should account for concern, skin type, sensitivity, current routine, and recent procedures.",
-      "Professional skincare should support a plan, not be self-prescribed from a product name alone.",
+      "A clinic product and a home-care product can differ in formula, application and supervision.",
+      "Bring the products you already use so the provider can spot overlap.",
+      "A product name alone tells you little about whether it suits sensitive or recently treated skin.",
     ],
     sections: [
       {
         id: "professional-vs-home",
-        title: "Professional use and home care serve different roles",
+        title: "Which products belong where",
         paragraphs: [
-          "A clinic protocol may use products, devices, or delivery methods that require trained application. Home care is designed for repeat use between visits and should protect the barrier rather than compete with recovery.",
+          "A clinic protocol may include products or devices that require trained application. At home, your routine needs to be easy to repeat and gentle enough for the stage of recovery. Ask which products you can use between visits and which belong in the clinic.",
         ],
       },
       {
         id: "personalization",
-        title: "Why consultation matters",
+        title: "Choose for the skin you have today",
         paragraphs: [
-          "Two clients with the same concern may need different ingredients because sensitivity, acne activity, pigmentation risk, medicines, and prior procedures differ. A recognizable brand does not make every formula suitable for every client.",
+          "Two people with similar dark spots can need different routines. One may have active acne or a rash, while the other is recovering from a peel. Mention medicines and past reactions so the provider can assess what your skin can tolerate.",
         ],
       },
       {
         id: "what-to-expect",
-        title: "What to expect",
+        title: "Use the consultation to simplify your routine",
         paragraphs: [
-          "The provider reviews your current routine and treatment history, identifies the priority concern, and explains which products are for clinic use, short-term recovery, or ongoing home care.",
+          "Bring photos of the front and ingredient label of each product. Ask which one is intended for the concern, what to use while the skin is sensitive and when to restart any product you have paused.",
         ],
       },
     ],
     beforecare: [
-      "Bring a list or photos of current products.",
-      "Disclose allergies and recent procedures.",
-      "Pause products only when instructed.",
+      "List products you use at home, including anything you apply only occasionally.",
+      "Mention allergies and the dates of recent procedures.",
+      "Ask before pausing or changing a prescribed product.",
     ],
     aftercare: [
-      "Introduce products gradually.",
-      "Stop and seek advice for a significant reaction.",
-      "Use sunscreen and barrier support as directed.",
+      "Introduce changes one at a time as directed so you can identify a reaction.",
+      "Stop the new product and seek advice if you develop a significant reaction.",
+      "Follow the moisturiser and sunscreen guidance for your treatment.",
     ],
     unsuitable: [
-      "Known ingredient allergy",
-      "Active severe irritation",
-      "A routine already causing barrier damage",
+      "A known allergy to the proposed ingredient",
+      "Severe active irritation",
+      "A routine that has already left skin sore or damaged",
     ],
-    contactClinic: ["Rapid swelling", "Blistering", "Spreading rash", "Persistent burning"],
-    faqs: withStandardFaqs([
+    contactClinic: ["Rapid swelling", "Blistering", "A spreading rash", "Burning that persists"],
+    faqs: [
       {
-        question: "Is professional skincare always stronger?",
+        question: "Does professional skincare mean a stronger product?",
         answer:
-          "Not always. The key differences may be formulation, delivery, intended use, and supervision.",
+          "Strength is one difference. Formula, intended use and how the product is applied also matter.",
       },
       {
-        question: "Can I copy a clinic protocol at home?",
+        question: "Can I buy the same products and repeat the clinic procedure?",
         answer:
-          "No. Some products and delivery methods are intended only for trained professional use.",
+          "Ask which products are made for home use. Leave products and methods that require trained application to the clinic.",
       },
       {
-        question: "How quickly should I add new products?",
+        question: "How many new products should I start at once?",
         answer:
-          "Follow the clinic's plan and introduce changes gradually so irritation can be identified.",
+          "Follow the plan you were given and introduce changes gradually. That makes it easier to tell which product caused stinging or a rash.",
       },
-    ]),
-    references: regenerativeReferences,
+      {
+        question: "How do I know which product to pause before a procedure?",
+        answer:
+          "Show the provider your current products, especially exfoliants and retinoids. Ask for the pause and restart instructions for the procedure being planned.",
+      },
+      {
+        question: "Can I use an MCCM product if I have a fragrance allergy?",
+        answer:
+          "Show the clinic the allergy information and ask to review the ingredients of the exact product before it is applied.",
+      },
+    ],
+    references: [
+      {
+        title: "Mesosystem: MCCM Medical Cosmetics brand information",
+        url: "https://www.mesosystem.com/brands",
+      },
+      {
+        title: "AAD: Preparing for a chemical peel",
+        url: "https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-preparation",
+      },
+    ],
     relatedArticles: ["mccm-home-care-after-treatments", "mccm-professional-chemical-peels"],
     relatedTreatments: [{ label: "MCCM Exosome PDRN", href: "/treatments/mccm-exosome-pdrn" }],
   },
   {
     slug: "exosomes-aesthetic-skincare",
-    title: "Exosomes in Aesthetic Skincare: What They Are and How They May Support Recovery",
+    title: "Exosomes in aesthetic skincare",
     excerpt:
-      "A cautious look at cellular signaling particles, topical recovery support, evidence limitations, and administration differences.",
+      "What exosomes are, why application and injection carry different risks, and what evidence to ask for before a procedure.",
     category: "mccm-skin-science",
     tags: ["exosomes", "recovery", "regenerative aesthetics"],
     heroImage: "/images/optimized/treatments/skin-support/product-verification-editorial.webp",
@@ -762,78 +856,108 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
     status: "medical-review-required",
     published: false,
     publishedAt: "2026-07-19",
-    updatedAt: "2026-07-19",
-    readingMinutes: 7,
-    seoTitle: "Exosomes in Aesthetic Skincare",
+    updatedAt: "2026-11-12",
+    readingMinutes: 3,
+    seoTitle: "Exosomes in aesthetic skincare",
     metaDescription:
-      "A client-friendly guide to exosomes, topical recovery support, evidence limitations, quality, and professional protocols.",
+      "What exosomes are, why application and injection carry different risks, and what evidence to ask for before a procedure.",
     keyTakeaways: [
-      "Exosomes are extracellular vesicles involved in cell-to-cell signaling; product source and quality matter.",
-      "Topical application and injection are not interchangeable procedures.",
-      "Evidence is emerging and heterogeneous, so complete regeneration or age reversal claims are not justified.",
+      "Exosomes are small particles that cells release to carry signals.",
+      "Products differ in source, processing and intended use.",
+      "A topical application, microneedling-assisted delivery and an injection each need their own safety assessment.",
     ],
     sections: [
       {
         id: "what-they-are",
-        title: "What exosomes are",
+        title: "What an exosome product contains",
         paragraphs: [
-          "Exosomes are tiny membrane-bound particles released by cells that can carry signaling molecules. In aesthetics, they are discussed as possible recovery-support ingredients, but products and evidence vary widely.",
+          "Exosomes are tiny particles surrounded by a membrane. They can carry molecules involved in communication between cells. Some products are studied for possible use in skin recovery. A result from one preparation or delivery method cannot establish that another product works.",
         ],
       },
       {
         id: "routes",
-        title: "Application method changes the risk",
+        title: "Ask how the product reaches the skin",
         paragraphs: [
-          "Applying a product to the surface after an appropriate procedure is different from microneedling-assisted delivery or injection. Sterility, regulation, source, and professional scope must be evaluated for each method.",
+          "A topical product sits on the skin surface. Microneedling makes small punctures in the skin, and an injection delivers material through the barrier. Each route changes what sterility, evidence and authorisation need to be checked. The U.S. FDA has warned about unapproved exosome products. Ask for the Philippine authorisation and intended use of the exact product before deciding.",
         ],
       },
       {
         id: "what-to-expect",
-        title: "What to expect",
+        title: "What to ask before giving consent",
         paragraphs: [
-          "When used in a clinic protocol, the provider should explain the product, intended route, evidence limitations, recovery plan, and alternatives before consent.",
+          "Ask for the product name, its source, how it will be applied and who will perform the procedure. Ask what studies support that specific use, what reactions to watch for and what alternatives are available. Discuss the plan for protecting the skin barrier afterward.",
         ],
       },
     ],
     beforecare: [
-      "Disclose allergies and immune conditions.",
-      "Ask what product and route are proposed.",
-      "Do not apply unverified products to freshly treated skin.",
+      "Tell the provider about allergies and immune conditions.",
+      "Ask which product and delivery method are proposed.",
+      "Check with the provider before applying unfamiliar products to freshly treated skin.",
     ],
     aftercare: [
-      "Follow barrier-care instructions.",
-      "Avoid unapproved actives during recovery.",
-      "Report unusual swelling, rash, or persistent pain.",
+      "Follow the instructions for cleansing, barrier care and sun protection.",
+      "Wait for clearance before restarting strong skincare products.",
+      "Report unusual swelling, rash or pain that persists.",
     ],
     unsuitable: [
-      "Known product allergy",
-      "Active infection",
-      "An unverified or non-sterile product/procedure",
+      "A known product allergy",
+      "An active infection in the treatment area",
+      "A product or procedure whose sterility or authorisation cannot be verified for the intended use",
     ],
-    contactClinic: ["Significant swelling", "Hives", "Increasing pain", "Signs of infection"],
-    faqs: withStandardFaqs([
+    contactClinic: [
+      "Significant swelling or hives",
+      "Increasing pain",
+      "Signs of infection",
+      "Seek emergency care for breathing difficulty or throat swelling",
+    ],
+    faqs: [
       {
-        question: "Do exosomes completely regenerate skin?",
-        answer: "No. That claim exceeds current clinical evidence.",
+        question: "Can exosomes regenerate my skin or reverse ageing?",
+        answer:
+          "Those promises go beyond the clinical evidence. Ask what has been studied for the actual product and route.",
       },
       {
-        question: "Are topical and injectable exosomes the same?",
-        answer: "No. Route, risk, oversight, and evidence differ substantially.",
+        question: "Can I use a topical product with microneedling?",
+        answer:
+          "Ask about the exact device, product and proposed route. A formula intended for intact skin may be unsuitable when that barrier is punctured.",
       },
       {
-        question: "Can exosomes replace sunscreen and aftercare?",
-        answer: "No. Barrier care and sun protection remain important.",
+        question: "Do I still need my usual recovery care?",
+        answer: "Follow the instructions for the procedure and keep up sun protection as directed.",
       },
-    ]),
-    references: regenerativeReferences,
+      {
+        question: "What should I ask before agreeing to the procedure?",
+        answer:
+          "Ask for the exact product name, the intended route and the evidence for the outcome being offered.",
+      },
+      {
+        question: "What if the product label only describes topical use?",
+        answer:
+          "Ask the provider to explain how the planned application fits the label. Discuss a different option if the intended use cannot be verified.",
+      },
+    ],
+    references: [
+      {
+        title: "U.S. FDA safety alert on unapproved stem cell and exosome products",
+        url: "https://www.fda.gov/safety/medical-product-safety-information/public-safety-alert-due-marketing-unapproved-stem-cell-and-exosome-products",
+      },
+      {
+        title: "U.S. FDA: Microneedling device benefits, risks and safety",
+        url: "https://www.fda.gov/consumers/consumer-updates/microneedling-devices-getting-point-benefits-risks-and-safety",
+      },
+      {
+        title: "Philippine FDA product verification portal",
+        url: "https://verification.fda.gov.ph/",
+      },
+    ],
     relatedArticles: ["pdrn-polynucleotides-guide", "mccm-home-care-after-treatments"],
     relatedTreatments: [{ label: "Request a skin consultation", href: "/appointment-request" }],
   },
   {
     slug: "pdrn-polynucleotides-guide",
-    title: "PDRN and Polynucleotides in Skin Rejuvenation: A Client-Friendly Guide",
+    title: "PDRN and polynucleotides in skin treatments",
     excerpt:
-      "What PDRN and polynucleotides mean, why delivery method matters, and where evidence remains limited.",
+      "What these DNA-derived ingredients are, how their delivery methods differ, and what studies can tell you about the likely result.",
     category: "mccm-skin-science",
     tags: ["PDRN", "polynucleotides", "skin rejuvenation"],
     heroImage: "/images/optimized/treatments/skin-support/skin-hydration-editorial.webp",
@@ -843,85 +967,109 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
     status: "medical-review-required",
     published: false,
     publishedAt: "2026-07-19",
-    updatedAt: "2026-07-19",
-    readingMinutes: 7,
-    seoTitle: "PDRN and Polynucleotides Guide",
+    updatedAt: "2026-11-12",
+    readingMinutes: 2,
+    seoTitle: "PDRN and polynucleotides in skin treatments",
     metaDescription:
-      "Understand PDRN and polynucleotides, hydration and texture goals, delivery methods, temporary effects, and assessment.",
+      "What these DNA-derived ingredients are, how their delivery methods differ, and what studies can tell you about the likely result.",
     keyTakeaways: [
-      "PDRN and polynucleotides are DNA-derived materials discussed in wound healing and aesthetic research.",
-      "Topical, mesotherapy-assisted, and injectable approaches are not equivalent.",
-      "Early evidence is promising in selected settings but does not support universal outcomes.",
+      "PDRN and polynucleotides are DNA-derived materials studied in some skin treatments.",
+      "Formula, purity and delivery affect what the evidence can support.",
+      "A topical product and an injectable have different risks and requirements.",
     ],
     sections: [
       {
         id: "definitions",
-        title: "PDRN and polynucleotides in context",
+        title: "What the names mean",
         paragraphs: [
-          "PDRN refers to shorter DNA-derived fragments, while polynucleotide products may use longer chains. Product processing, purity, concentration, and route all influence how a protocol should be evaluated.",
+          "PDRN stands for polydeoxyribonucleotide, a name used for preparations of DNA fragments. Products marketed as polynucleotides may contain longer chains. Ask what the actual product contains and where it comes from, particularly if you have a relevant allergy.",
         ],
       },
       {
         id: "goals",
-        title: "What aesthetic protocols may aim to support",
+        title: "What researchers have studied",
         paragraphs: [
-          "Professional protocols may target hydration, barrier recovery, texture, or the appearance of fine lines. These are appearance and recovery goals, not promises to reverse aging or cure skin disease.",
+          "Small studies have looked at hydration, skin texture and the appearance of fine lines. The products and methods vary. A result seen with one injectable formulation does not tell you what to expect from a serum applied to the surface or used with a device.",
         ],
       },
       {
         id: "what-to-expect",
-        title: "What to expect",
+        title: "Ask how the product is delivered",
         paragraphs: [
-          "The provider should explain whether the approach is topical, assisted delivery, or injection; who performs it; expected temporary effects; alternatives; and the follow-up plan.",
+          "Before you decide, ask whether the product stays on the surface, is used with microneedling or is injected. Ask who will perform the procedure, what reactions are expected and what happens if swelling or sensitivity lasts longer than expected. Check the exact product and permitted route in the Philippines.",
         ],
       },
     ],
     beforecare: [
-      "Disclose allergies, medicines, and prior injectable reactions.",
-      "Clarify the exact product and route.",
-      "Postpone treatment over active infection or broken skin.",
+      "Mention allergies, medicines and reactions to past injections.",
+      "Confirm the product name and delivery method.",
+      "Have infected or broken skin assessed before treatment.",
     ],
     aftercare: [
-      "Keep the area clean as directed.",
-      "Avoid rubbing and unapproved actives.",
-      "Attend follow-up if swelling or sensitivity persists.",
+      "Keep the area clean as directed and avoid rubbing it.",
+      "Wait before resuming products your provider asked you to pause.",
+      "Arrange follow-up if swelling or sensitivity persists.",
     ],
     unsuitable: [
       "Active infection",
-      "Known ingredient sensitivity",
-      "A route or product not appropriate for the client's medical history",
+      "A known sensitivity to an ingredient",
+      "A product or delivery method that is unsuitable for your health history",
     ],
     contactClinic: [
-      "Increasing redness",
+      "Redness that increases",
       "Severe swelling",
       "Discharge",
       "Persistent or severe pain",
     ],
-    faqs: withStandardFaqs([
+    faqs: [
       {
-        question: "Is PDRN simply 'salmon DNA'?",
+        question: "What does “salmon DNA” mean on a label?",
         answer:
-          "That phrase is incomplete. Products use processed DNA-derived fragments, and source, purification, formulation, and route matter.",
+          "It is shorthand for the source of some processed DNA-derived ingredients. Ask about the exact source, purification and other ingredients.",
       },
       {
-        question: "Is topical PDRN the same as an injectable?",
-        answer: "No. Delivery, oversight, risk, and expected effects differ.",
+        question: "Will a cream work like an injection?",
+        answer:
+          "They deliver the material differently. Studies on injections cannot establish how well a cream works.",
       },
       {
         question: "How long do results last?",
         answer:
-          "Evidence and protocols vary. The clinic should discuss realistic, non-guaranteed expectations for the selected product and route.",
+          "There is no single estimate across products and protocols. Ask what follow-up the evidence supports for the one being discussed.",
       },
-    ]),
-    references: regenerativeReferences,
+      {
+        question: "Are PDRN and PN interchangeable?",
+        answer:
+          "The terms describe related DNA-derived materials, but products can differ in chain length, formulation and intended use. Ask which product and route the provider means.",
+      },
+      {
+        question: "Should I mention a fish allergy?",
+        answer:
+          "Yes. Some formulations use fish-derived material. Bring your allergy history and ask the clinician to check the exact product before treatment.",
+      },
+    ],
+    references: [
+      {
+        title: "Systematic review of polynucleotides in aesthetic medicine",
+        url: "https://pubmed.ncbi.nlm.nih.gov/39645667/",
+      },
+      {
+        title: "U.S. FDA: Microneedling device benefits, risks and safety",
+        url: "https://www.fda.gov/consumers/consumer-updates/microneedling-devices-getting-point-benefits-risks-and-safety",
+      },
+      {
+        title: "Philippine FDA product verification portal",
+        url: "https://verification.fda.gov.ph/",
+      },
+    ],
     relatedArticles: ["exosomes-aesthetic-skincare", "mccm-mesotherapy-solutions"],
     relatedTreatments: [{ label: "MCCM Exosome PDRN", href: "/treatments/mccm-exosome-pdrn" }],
   },
   {
     slug: "vitamin-c-glutathione-brightening",
-    title: "Vitamin C and Glutathione in Professional Brightening Treatments",
+    title: "Vitamin C and glutathione for uneven-looking skin",
     excerpt:
-      "How antioxidants may support brighter-looking, more even skin without promising permanent whitening.",
+      "What topical antioxidants may do, why vitamin C can sting, and the Philippine FDA warning on injections for skin lightening.",
     category: "mccm-skin-science",
     tags: ["vitamin C", "glutathione", "brightening"],
     heroImage: "/images/optimized/treatments/mccm/mccm-eye-contour.webp",
@@ -931,79 +1079,104 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
     status: "medical-review-required",
     published: false,
     publishedAt: "2026-07-19",
-    updatedAt: "2026-07-19",
-    readingMinutes: 6,
-    seoTitle: "Vitamin C and Glutathione Brightening",
+    updatedAt: "2026-11-12",
+    readingMinutes: 3,
+    seoTitle: "Vitamin C and glutathione for uneven-looking skin",
     metaDescription:
-      "Learn how Vitamin C and glutathione are discussed in professional brightening, sensitivity, sunscreen, and realistic expectations.",
+      "What topical antioxidants may do, why vitamin C can sting, and the Philippine FDA warning on injections for skin lightening.",
     keyTakeaways: [
-      "Antioxidants may support skin appearance but do not permanently change natural skin color.",
-      "Formulation and stability affect Vitamin C products.",
-      "Sunscreen and irritation control are central to pigment care.",
+      "The form and stability of vitamin C affect the product you put on your skin.",
+      "Sun protection helps prevent dark marks from becoming more noticeable.",
+      "Philippine FDA has warned against injectable glutathione for skin lightening.",
     ],
     sections: [
       {
         id: "antioxidants",
-        title: "Antioxidants and skin appearance",
+        title: "What topical antioxidants can do",
         paragraphs: [
-          "Vitamin C participates in antioxidant pathways and is used in skincare for brightness and environmental-stress support. Glutathione is also discussed in antioxidant and pigment-related protocols, but route and evidence matter.",
+          "Vitamin C is an antioxidant used in skincare for concerns such as uneven tone. The form, concentration and acidity of a formula affect how it feels and how well you tolerate it. Glutathione is also an antioxidant. Evidence for one formulation or method of delivery cannot establish a benefit for another.",
         ],
       },
       {
         id: "limitations",
-        title: "Realistic brightening expectations",
+        title: "Topical products and injections",
         paragraphs: [
-          "Professional brightening aims to support a more even or less dull appearance. It should not promise permanent whitening, a change in natural skin color, or identical results for every client.",
+          "A professional brightening plan may aim to soften the appearance of uneven patches while respecting your natural skin tone. The Philippine FDA's advisory warns about injectable glutathione for skin lightening and says injectable products are not approved for that purpose. The advisory also describes risks from injections and infusions.",
         ],
       },
       {
         id: "what-to-expect",
-        title: "What to expect",
+        title: "Review what is already in your routine",
         paragraphs: [
-          "Assessment considers sensitivity, current actives, pigmentation pattern, and recent procedures before a formulation or combination treatment is selected.",
+          "Bring the products you use for dark marks, acne or exfoliation. If the skin is already stinging or peeling, the provider may recommend letting it settle before adding a product. The cause of the pigmentation and recent procedures help determine what you can use.",
         ],
       },
     ],
     beforecare: [
-      "Disclose sensitive-skin reactions.",
-      "Avoid layering new strong actives before treatment.",
+      "Mention sensitive-skin reactions and allergies.",
+      "Avoid starting several strong products just before an appointment.",
       "Bring your current routine for review.",
     ],
     aftercare: [
-      "Use sunscreen daily.",
-      "Introduce actives gradually.",
-      "Stop and seek advice if burning or rash develops.",
+      "Use sunscreen daily as directed.",
+      "Introduce products gradually so you can identify irritation.",
+      "Stop the product and seek advice if burning or a rash develops.",
     ],
     unsuitable: [
-      "Known ingredient allergy",
+      "A known ingredient allergy",
       "Active dermatitis",
-      "A damaged skin barrier requiring recovery first",
+      "Irritated or damaged skin that needs time to recover",
     ],
-    contactClinic: ["Swelling", "Hives", "Blistering", "Persistent burning"],
-    faqs: withStandardFaqs([
+    contactClinic: ["Swelling", "Hives", "Blisters", "Burning that continues"],
+    faqs: [
       {
-        question: "Will glutathione permanently whiten skin?",
+        question: "Will glutathione permanently lighten my skin?",
         answer:
-          "No permanent whitening claim is appropriate. Natural skin color should be respected.",
+          "A reliable permanent change in natural skin colour has not been established. Ask which specific marks the plan is intended to address.",
       },
       {
-        question: "Can Vitamin C irritate skin?",
-        answer: "Yes. Form, concentration, pH, and the rest of the routine influence tolerability.",
+        question: "Why does my vitamin C product sting?",
+        answer:
+          "The formulation, concentration and acidity can affect how it feels. Combining it with strong actives may add irritation. Seek advice if the burning continues.",
       },
       {
-        question: "Is sunscreen still needed?",
-        answer: "Yes. Sun protection is essential when addressing uneven pigmentation.",
+        question: "Do I still need sunscreen if I use an antioxidant?",
+        answer:
+          "Yes. Keep using sun protection as directed, especially when treating uneven pigmentation.",
       },
-    ]),
-    references: regenerativeReferences,
+      {
+        question: "Can I start a vitamin C serum right after a peel?",
+        answer:
+          "Ask when your skin is ready for active products again. A serum that feels fine on intact skin can sting while the skin is recovering.",
+      },
+      {
+        question: "Does a darker spot need the same care as general uneven tone?",
+        answer:
+          "The cause matters. Get a persistent, new or changing spot assessed before treating it with brightening products.",
+      },
+    ],
+    references: [
+      {
+        title: "Philippine FDA Advisory No. 2019-182 on injectable skin lightening products",
+        url: "https://www.fda.gov.ph/wp-content/uploads/2019/07/FDA-Advisory-No.2019-182.pdf",
+      },
+      {
+        title: "AAD: Melasma diagnosis and treatment",
+        url: "https://www.aad.org/public/diseases/a-z/melasma-treatment",
+      },
+      {
+        title: "Randomized trial of topical ascorbic acid on photoaged skin",
+        url: "https://pubmed.ncbi.nlm.nih.gov/12823436/?dopt=Abstract",
+      },
+    ],
     relatedArticles: ["mccm-professional-skincare-guide", "pico-laser-facial-pigmentation"],
     relatedTreatments: [{ label: "Professional skin support", href: "/treatments/skin-support" }],
   },
   {
     slug: "mccm-professional-chemical-peels",
-    title: "MCCM Professional Chemical Peels: Types, Benefits, Downtime, and Aftercare",
+    title: "MCCM chemical peels and recovery",
     excerpt:
-      "Why peel depth, formulation, skin tone, and recovery planning matter more than choosing the strongest option.",
+      "How peel depth affects recovery, what to disclose before a session, and which reactions need medical attention.",
     category: "mccm-skin-science",
     tags: ["chemical peel", "texture", "pigmentation"],
     heroImage: "/images/optimized/clinic/esclare-naga-preparation-area-v2.webp",
@@ -1013,78 +1186,104 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
     status: "medical-review-required",
     published: false,
     publishedAt: "2026-07-19",
-    updatedAt: "2026-07-19",
-    readingMinutes: 7,
-    seoTitle: "Professional Chemical Peels Guide",
+    updatedAt: "2026-11-12",
+    readingMinutes: 3,
+    seoTitle: "MCCM chemical peels and recovery",
     metaDescription:
-      "Understand professional chemical peels, superficial and deeper concepts, downtime, beforecare, aftercare, and warning signs.",
+      "How peel depth affects recovery, what to disclose before a session, and which reactions need medical attention.",
     keyTakeaways: [
-      "A chemical peel creates controlled exfoliation; depth and formulation determine recovery.",
-      "Stronger is not automatically better, especially for sensitive or pigment-prone skin.",
-      "Sun protection and not picking peeling skin are essential.",
+      "A chemical peel removes controlled layers of skin.",
+      "Depth, formula and your tendency to develop dark marks affect recovery.",
+      "Protect treated skin from the sun and let flakes come away on their own.",
     ],
     sections: [
       {
         id: "peel-depth",
-        title: "Superficial and deeper peel concepts",
+        title: "How deep will the peel go?",
         paragraphs: [
-          "Superficial peels focus on the outer skin layers and may have lighter downtime. Deeper approaches create more injury, risk, and recovery and may require medical oversight. Product names alone do not reveal the full strength of a protocol.",
+          "A superficial peel acts on the outer layers and generally has a shorter recovery. A deeper peel affects more tissue and can carry more risk, including scarring and pigment changes. Ask how deep the provider plans to go. A brand or product name alone cannot tell you how the peel will be used.",
         ],
       },
       {
         id: "concerns",
-        title: "Concerns a peel may be selected for",
+        title: "Choosing a peel for your skin",
         paragraphs: [
-          "Depending on formulation, a peel may be considered for dullness, oiliness, superficial pigmentation, acne-prone skin, texture, or fine-line appearance. Active disease and deeper scars may need another plan.",
+          "A clinician may consider a peel for certain superficial dark marks, uneven texture, dullness, fine lines or acne-prone skin. Active skin disease and deeper scars may need another approach. If you are prone to dark marks after irritation, ask about the provider's experience with your skin tone.",
         ],
       },
       {
         id: "what-to-expect",
-        title: "What to expect",
+        title: "Application and the days afterward",
         paragraphs: [
-          "After cleansing and protection of sensitive areas, the peel is applied for a controlled period and neutralized or removed according to protocol. Tingling, warmth, dryness, tightness, or visible peeling may occur.",
+          "The provider cleans the area and protects sensitive spots. They apply the peel for the planned period, then remove or neutralise it according to the product directions. You may feel tingling or warmth. Dryness, tightness or flaking can follow, depending on the peel.",
         ],
       },
     ],
     beforecare: [
-      "Disclose retinoids, isotretinoin history, recent waxing, lasers, and irritation.",
-      "Avoid tanning.",
-      "Pause actives only as instructed.",
+      "Tell the provider about retinoids, past isotretinoin use, recent waxing, laser treatment or irritation.",
+      "Avoid tanning before the appointment.",
+      "Follow the instructions on which actives to pause.",
     ],
     aftercare: [
-      "Do not pick peeling skin.",
-      "Use gentle cleanser, moisturizer, and sunscreen.",
-      "Avoid heat, exfoliation, and unapproved actives during recovery.",
+      "Let peeling skin shed without pulling or picking it.",
+      "Use the cleanser, moisturiser and sunscreen specified for your recovery.",
+      "Avoid heat, exfoliation and unapproved actives until cleared.",
     ],
     unsuitable: [
-      "Open wounds or infection",
-      "Active severe dermatitis",
-      "A recent procedure or medicine that increases risk",
+      "Broken skin or active infection",
+      "Severe active dermatitis",
+      "A medicine or recent procedure that raises the risk of injury or delayed recovery",
     ],
     contactClinic: ["Severe pain", "Blistering", "Marked swelling", "Signs of infection"],
-    faqs: withStandardFaqs([
+    faqs: [
       {
-        question: "Does a peel have to visibly peel to work?",
-        answer: "No. Visible flaking varies with formulation, depth, and individual response.",
+        question: "Will I always see visible peeling?",
+        answer:
+          "Flaking varies with the formula, depth and individual response. The amount of peeling does not tell you how much benefit to expect.",
       },
       {
-        question: "Is a stronger peel better?",
-        answer: "No. Excessive strength can increase irritation, scarring, and pigment risk.",
+        question: "Should I ask for the strongest peel I can tolerate?",
+        answer:
+          "Ask what depth fits the concern and your history. Excessive strength can cause irritation, scarring or dark marks.",
       },
       {
-        question: "Can I use retinoids immediately after?",
-        answer: "Only restart strong actives when the clinic says your skin is ready.",
+        question: "When can I restart a retinoid?",
+        answer:
+          "Follow the restart date or recovery signs your provider gives you for the specific peel.",
       },
-    ]),
-    references: laserReferences,
+      {
+        question: "How much recovery time should I plan for?",
+        answer:
+          "Ask about the expected redness and flaking for your exact peel. Recovery varies with depth and can affect when you can return to makeup and other products.",
+      },
+      {
+        question: "Does melasma change the peel plan?",
+        answer:
+          "It can. Tell the provider about melasma and previous dark marks after irritation so they can assess the risk of worsening pigmentation.",
+      },
+    ],
+    references: [
+      {
+        title: "AAD: Chemical peel FAQs",
+        url: "https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs",
+      },
+      {
+        title: "AAD: Preparing for a chemical peel",
+        url: "https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-preparation",
+      },
+      {
+        title: "Mesosystem: MCCM Medical Cosmetics brand information",
+        url: "https://www.mesosystem.com/brands",
+      },
+    ],
     relatedArticles: ["mccm-home-care-after-treatments", "professional-skincare-energy-treatments"],
     relatedTreatments: [{ label: "Facial treatments", href: "/treatments#facials" }],
   },
   {
     slug: "mccm-mesotherapy-solutions",
-    title: "MCCM Mesotherapy Solutions: Hydration, Brightening, and Skin Rejuvenation",
+    title: "MCCM mesotherapy solutions and how they are applied",
     excerpt:
-      "The important differences between topical application, microneedling-assisted delivery, and medical injection.",
+      "Questions to ask about the product, whether needles are involved, and what recovery looks like for the proposed route.",
     category: "mccm-skin-science",
     tags: ["mesotherapy", "hydration", "professional skincare"],
     heroImage: "/images/optimized/treatments/skin-support/brightening-system-editorial.webp",
@@ -1094,69 +1293,96 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
     status: "medical-review-required",
     published: false,
     publishedAt: "2026-07-19",
-    updatedAt: "2026-07-19",
-    readingMinutes: 7,
-    seoTitle: "MCCM Mesotherapy Solutions Guide",
+    updatedAt: "2026-11-12",
+    readingMinutes: 3,
+    seoTitle: "MCCM mesotherapy solutions and how they are applied",
     metaDescription:
-      "Understand topical, microneedling-assisted, and injectable mesotherapy approaches, ingredients, sterile technique, and aftercare.",
+      "Questions to ask about the product, whether needles are involved, and what recovery looks like for the proposed route.",
     keyTakeaways: [
-      "Mesotherapy is used inconsistently as a term, so the delivery method must be stated clearly.",
-      "Topical use, assisted delivery, and injection carry different risks and provider requirements.",
-      "Sterility, product authorization, and candidate assessment are essential.",
+      "Ask what a clinic means by mesotherapy before agreeing to the procedure.",
+      "A surface application, microneedling-assisted delivery and injection need separate assessments.",
+      "When a procedure crosses the skin barrier, check the product's intended route, sterility and the provider's qualifications.",
     ],
     sections: [
       {
         id: "meaning",
-        title: "What mesotherapy can mean",
+        title: "Clarify the route first",
         paragraphs: [
-          "The term may describe superficial application, device-assisted delivery, or small injections. These are not interchangeable. Clients should be told exactly what route is proposed and who is qualified to perform it.",
+          "A clinic may use the word mesotherapy for a surface application, use with a device or a series of small injections. Ask which is planned and who will perform it. A product labelled for topical use should not be assumed suitable for microneedling or injection.",
         ],
       },
       {
         id: "ingredients",
-        title: "Hydration and brightening ingredients",
+        title: "Read the formula in context",
         paragraphs: [
-          "Protocols may include humectants, antioxidants, peptides, or pigment-support ingredients. More ingredients do not automatically produce a better or safer result.",
+          "A solution may contain humectants, which help hold water, or ingredients such as antioxidants and peptides. A longer ingredient list cannot tell you whether the formula will suit your skin. Ask what the selected product is intended to do and whether its use and route can be verified in the Philippines.",
         ],
       },
       {
         id: "what-to-expect",
-        title: "What to expect",
+        title: "Consent and care for the exact procedure",
         paragraphs: [
-          "The visit should include skin assessment, consent for the exact route, sterile preparation where the barrier is crossed, application, and route-specific recovery instructions.",
+          "Before treatment, the provider should check your skin and explain the route, temporary effects and alternatives. If the procedure crosses the skin barrier, ask how the provider prepares it and what sterile products or equipment are used. Get written instructions for the recovery that applies to your procedure.",
         ],
       },
     ],
     beforecare: [
-      "Disclose allergies and bleeding-risk medicines.",
-      "Ask whether needles or microneedling are involved.",
-      "Postpone over infected or irritated skin.",
+      "Disclose allergies and medicines that affect bleeding. Ask before making changes to any prescription.",
+      "Ask whether the plan involves needles and who will use them.",
+      "Have irritated or infected skin assessed before proceeding.",
     ],
     aftercare: [
-      "Keep treated skin clean.",
-      "Avoid makeup and actives for the instructed period.",
-      "Do not touch the area unnecessarily.",
+      "Keep the area clean as instructed and limit touching it.",
+      "Wait for the advised period before applying makeup or active skincare.",
+      "Ask what to do if small bumps or swelling last longer than expected.",
     ],
-    unsuitable: ["Active infection", "Uncontrolled bleeding risk", "Known product allergy"],
-    contactClinic: ["Increasing pain", "Spreading redness", "Pus or fever", "Severe swelling"],
-    faqs: withStandardFaqs([
+    unsuitable: [
+      "Active infection",
+      "An uncontrolled bleeding risk",
+      "A known allergy to the proposed product",
+    ],
+    contactClinic: ["Increasing pain", "Redness that spreads", "Pus or fever", "Severe swelling"],
+    faqs: [
       {
-        question: "Is all mesotherapy injectable?",
+        question: "Does mesotherapy always involve injections?",
         answer:
-          "No. The term is used for different delivery methods, which is why the clinic must name the exact route.",
+          "The term is used for different procedures. Ask for the specific route before you consent.",
       },
       {
-        question: "Can a therapist perform injections?",
+        question: "Who can perform an injection?",
         answer:
-          "Injection scope depends on professional licensing, product, and local requirements. ESCLARE must assign an appropriately qualified provider.",
+          "Ask the clinic to identify the appropriately qualified provider. The requirements depend on professional scope, the product and applicable local rules.",
       },
       {
-        question: "Will I have small bumps?",
+        question: "Should I expect small bumps afterward?",
         answer:
-          "Temporary marks or swelling depend on the delivery method. The provider should explain what is expected for your protocol.",
+          "Temporary bumps or swelling depend on the delivery method. Ask what is expected and when to call.",
       },
-    ]),
-    references: regenerativeReferences,
+      {
+        question: "Does an ampoule label tell me how it should be applied?",
+        answer:
+          "Read the specific directions with the provider. The packaging alone gives no basis for choosing an injection or applying it to punctured skin.",
+      },
+      {
+        question: "What if a clinic proposes a mixture of several products?",
+        answer:
+          "Ask for the name and intended route of each product, and how the provider checks that the combination is appropriate.",
+      },
+    ],
+    references: [
+      {
+        title: "U.S. FDA: Microneedling device benefits, risks and safety",
+        url: "https://www.fda.gov/consumers/consumer-updates/microneedling-devices-getting-point-benefits-risks-and-safety",
+      },
+      {
+        title: "Philippine FDA product verification portal",
+        url: "https://verification.fda.gov.ph/",
+      },
+      {
+        title: "MCCM Medical Cosmetics: Serum Solution topical-use directions",
+        url: "https://mccmmedicalcosmetics.com/products/serum-solution",
+      },
+    ],
     relatedArticles: ["pdrn-polynucleotides-guide", "mccm-professional-skincare-guide"],
     relatedTreatments: [
       { label: "Request a professional skin assessment", href: "/appointment-request" },
@@ -1164,10 +1390,9 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
   },
   {
     slug: "professional-skincare-energy-treatments",
-    title:
-      "How Professional Skincare May Be Combined with Pico Laser, Fractional Laser, HIFU, and Other Treatments",
+    title: "Planning skincare around Pico laser, HIFU and other procedures",
     excerpt:
-      "Why sequencing, barrier recovery, and individualized timing matter when combining products with energy-based procedures.",
+      "How to schedule skincare around laser, HIFU, peels and microneedling, and why recovery determines when to restart actives.",
     category: "mccm-skin-science",
     tags: ["combination treatments", "Pico", "HIFU"],
     heroImage: "/images/optimized/treatments/hifu/hifu-face-treatment.webp",
@@ -1177,78 +1402,101 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
     status: "medical-review-required",
     published: false,
     publishedAt: "2026-07-19",
-    updatedAt: "2026-07-19",
-    readingMinutes: 7,
-    seoTitle: "Combining Skincare with Laser and HIFU",
+    updatedAt: "2026-11-12",
+    readingMinutes: 3,
+    seoTitle: "Planning skincare around Pico laser, HIFU and other procedures",
     metaDescription:
-      "Learn why treatment sequencing, skin-barrier recovery, active ingredients, and personalized timing matter around Pico, fractional laser, HIFU, and diode.",
+      "How to schedule skincare around laser, HIFU, peels and microneedling, and why recovery determines when to restart actives.",
     keyTakeaways: [
-      "Combination care is a sequence, not a shopping list.",
-      "Barrier-disrupting procedures may require actives to pause before and after treatment.",
-      "Fixed intervals should not be copied without clinician approval.",
+      "Tell each provider what procedures you have booked or recently had.",
+      "Your skin may need a break from strong products after a procedure that disrupts the outer barrier.",
+      "Ask for one written recovery plan if more than one procedure is involved.",
     ],
     sections: [
       {
         id: "sequencing",
-        title: "Why sequencing matters",
+        title: "Decide which concern to treat first",
         paragraphs: [
-          "Laser, fractional treatments, HIFU, diode, peels, and microneedling affect skin in different ways and depths. Combining them too closely can increase irritation without improving outcomes.",
+          "Pico, fractional laser, HIFU, diode laser, peels and microneedling affect different structures or depths. A schedule that works for one procedure may give skin too little recovery after another. Tell the provider about appointments you already have and agree on which concern takes priority.",
         ],
       },
       {
         id: "barrier",
-        title: "Protecting the skin barrier",
+        title: "Give irritated skin time to recover",
         paragraphs: [
-          "After a barrier-disrupting treatment, the immediate priority may be gentle cleansing, moisturization, and sun protection. Retinoids, exfoliating acids, fragranced products, and additional procedures may need to wait.",
+          "The skin barrier is the outer layer that helps keep moisture in and irritants out. If a treatment disturbs it, follow the instructions for cleansing, moisturiser and sun protection. Ask when to restart retinoids, exfoliating acids and fragranced products or schedule another procedure.",
         ],
       },
       {
         id: "what-to-expect",
-        title: "What to expect from planning",
+        title: "Get one plan for the visits",
         paragraphs: [
-          "The provider maps the primary concern, treatment intensity, expected recovery, home care, and follow-up before deciding what can occur on the same day or at a later visit.",
+          "Ask which treatments can be done together and what should wait. The provider considers the intensity, your skin's response and what you can manage at home. If you receive conflicting aftercare instructions, ask the clinician responsible for the combined plan to clarify them.",
         ],
       },
     ],
     beforecare: [
-      "List recent procedures and current actives.",
-      "Do not schedule overlapping treatments without review.",
-      "Report active irritation or sun exposure.",
+      "List recent procedures and active skincare products.",
+      "Ask the provider to review other appointments before scheduling overlapping treatments.",
+      "Mention irritation and recent sun exposure.",
     ],
     aftercare: [
-      "Follow the most restrictive recovery instruction from the combined plan.",
-      "Restart actives only when cleared.",
-      "Use daily sun protection.",
+      "Follow the recovery instructions for the combined plan. Ask for clarification if the instructions conflict.",
+      "Restart actives when the provider confirms your skin is ready.",
+      "Protect the treated areas from the sun as advised.",
     ],
     unsuitable: [
-      "A damaged skin barrier",
+      "A damaged or irritated skin barrier",
       "Active infection",
-      "Insufficient recovery time between procedures",
+      "Too little recovery time since the previous procedure",
     ],
     contactClinic: [
-      "Unexpected blistering",
+      "Unexpected blisters",
       "Increasing pain",
       "Marked swelling",
-      "Delayed worsening",
+      "Symptoms that worsen after initially settling",
     ],
-    faqs: withStandardFaqs([
+    faqs: [
       {
-        question: "Can Pico and a peel be done on the same day?",
+        question: "Can I get a peel on the same day as Pico?",
         answer:
-          "Sometimes combinations are planned, but fixed advice is unsafe. The clinic must assess intensity, formulation, and recovery risk.",
+          "The answer depends on the laser mode, peel formula and your skin. Have the provider assess the combination before booking.",
       },
       {
-        question: "Can skincare improve HIFU results?",
+        question: "What role can skincare play after HIFU?",
         answer:
-          "Skincare can support surface health, but it does not reproduce or guarantee the effects of an energy-based treatment.",
+          "Surface skincare can help with comfort or dryness. It has a different purpose from the ultrasound treatment.",
       },
       {
-        question: "When can I restart retinoids?",
+        question: "When can I use retinoids again?",
         answer:
-          "Restart timing depends on the procedure and recovery. Follow your provider's instruction.",
+          "Follow the timing for the exact procedure and your recovery. Ask the provider if your skin is still sore or peeling at the planned restart.",
       },
-    ]),
-    references: [...laserReferences, ...regenerativeReferences],
+      {
+        question: "What if I already have a facial scheduled elsewhere?",
+        answer:
+          "Tell both providers which procedures and products are planned and when. They can advise whether to space the appointments.",
+      },
+      {
+        question: "What if my skin is still peeling on the day of the next visit?",
+        answer:
+          "Tell the clinic before treatment. The provider can reassess the area and adjust the schedule if the skin is still irritated.",
+      },
+    ],
+    references: [
+      {
+        title: "Systematic review of picosecond lasers in dermatology",
+        url: "https://pubmed.ncbi.nlm.nih.gov/32282094/",
+      },
+      {
+        title: "AAD: Chemical peel FAQs",
+        url: "https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs",
+      },
+      {
+        title: "U.S. FDA: Microneedling device benefits, risks and safety",
+        url: "https://www.fda.gov/consumers/consumer-updates/microneedling-devices-getting-point-benefits-risks-and-safety",
+      },
+    ],
     relatedArticles: ["mccm-home-care-after-treatments", "pico-laser-facial-rejuvenation"],
     relatedTreatments: [
       { label: "Pico Glow Face", href: "/treatments/pico-glow-face" },
@@ -1257,9 +1505,9 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
   },
   {
     slug: "mccm-home-care-after-treatments",
-    title: "A Practical Home-Care Guide After Professional Skin Treatments",
+    title: "Home care after a professional skin treatment",
     excerpt:
-      "A calm recovery checklist for cleansing, moisturizing, sunscreen, active ingredients, heat, makeup, and warning signs.",
+      "How to wash and protect recovering skin, when to resume products or exercise, and which reactions need urgent care.",
     category: "mccm-skin-science",
     tags: ["aftercare", "skin barrier", "sunscreen"],
     heroImage: "/images/optimized/clinic/esclare-naga-treatment-room-v2.webp",
@@ -1269,85 +1517,109 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
     status: "medical-review-required",
     published: false,
     publishedAt: "2026-07-19",
-    updatedAt: "2026-07-19",
-    readingMinutes: 6,
-    seoTitle: "Home Care After Professional Skin Treatments",
+    updatedAt: "2026-11-12",
+    readingMinutes: 3,
+    seoTitle: "Home care after a professional skin treatment",
     metaDescription:
-      "Practical home care after professional skin treatments: gentle cleansing, barrier support, sunscreen, makeup, actives, and warning signs.",
+      "How to wash and protect recovering skin, when to resume products or exercise, and which reactions need urgent care.",
     keyTakeaways: [
-      "Follow the procedure-specific instructions given by ESCLARE.",
-      "Gentle cleansing, moisturizer, and sunscreen are common recovery foundations.",
-      "Severe or worsening symptoms should be reported rather than treated with random products.",
+      "Use the written instructions for the exact procedure you had.",
+      "Ask which cleanser, moisturiser and sun protection to use while skin is sensitive.",
+      "Get help for severe symptoms or a reaction that keeps getting worse.",
     ],
     sections: [
       {
         id: "first-days",
-        title: "The first days of recovery",
+        title: "What to do when you get home",
         paragraphs: [
-          "The skin may feel warm, tight, dry, or sensitive depending on the procedure. Avoid over-cleansing and unnecessary touching. Use only the products approved for your recovery stage.",
+          "Your skin may feel warm, tight or dry. Use the products approved for this stage and wash gently, following any instructions about when you can get the area wet. Pat dry instead of rubbing. Avoid touching or picking the treated area.",
         ],
       },
       {
         id: "actives",
-        title: "When to pause active ingredients",
+        title: "When to resume your usual routine",
         paragraphs: [
-          "Retinoids, exfoliating acids, scrubs, benzoyl peroxide, and strong brightening products may need to pause. Restart timing depends on the procedure and how the skin is healing.",
+          "Retinoids, exfoliating acids, scrubs, benzoyl peroxide and strong brightening products can irritate recovering skin. Ask which ones to pause and what signs tell you it is safe to restart. Check before resuming a prescription skin medicine.",
         ],
       },
       {
         id: "what-to-expect",
-        title: "What to expect",
+        title: "Know what recovery should look like",
         paragraphs: [
-          "Normal recovery varies. Mild redness or dryness can be expected after some procedures, while others have little visible downtime. Your written aftercare should identify the expected pattern for your treatment.",
+          "Some procedures cause a few days of redness or dryness, while others leave little visible change. Ask which reactions are expected for yours and when they should settle. If redness spreads, pain increases or fluid drains from the area, contact the clinic for assessment.",
         ],
       },
     ],
     beforecare: [
-      "Ask for written aftercare before leaving the clinic.",
-      "Prepare gentle cleanser, moisturizer, and sunscreen.",
-      "Plan around heat, exercise, swimming, and makeup restrictions.",
+      "Ask for written instructions before you leave the clinic.",
+      "Have the recommended cleanser, moisturiser and sun protection ready.",
+      "Check when you can resume exercise, swimming, makeup and activities that expose the skin to heat.",
     ],
     aftercare: [
-      "Cleanse gently and pat dry.",
-      "Moisturize and protect from sun.",
-      "Avoid heat, steam, friction, scratching, and picking until cleared.",
+      "Clean gently and pat dry when the instructions allow.",
+      "Use the recommended moisturiser and sun protection.",
+      "Avoid steam, friction, scratching and picking until the area has recovered as directed.",
     ],
     unsuitable: [
-      "This guide is not a substitute for procedure-specific advice.",
-      "Do not self-treat a suspected infection or serious reaction.",
-      "Do not restart prescription skin medicines without guidance.",
+      "A suspected infection or serious reaction needs medical assessment.",
+      "Ask your prescriber before restarting a paused prescription product.",
+      "Use the recovery plan for the procedure you had, especially if you were given wound-care instructions.",
     ],
     contactClinic: [
-      "Severe pain",
+      "Severe or increasing pain",
       "Blistering",
-      "Spreading redness or discharge",
-      "Swelling that affects breathing or vision",
+      "Redness that spreads or discharge from the area",
+      "Seek emergency care if swelling affects breathing or vision.",
     ],
-    faqs: withStandardFaqs([
+    faqs: [
       {
-        question: "When can I wear makeup?",
+        question: "When can I wear makeup again?",
         answer:
-          "Timing depends on whether the skin barrier was disrupted. Follow the instruction for your exact procedure.",
+          "Ask for the timing for your treatment. Skin that has been punctured or resurfaced may need longer before makeup is safe.",
       },
       {
-        question: "When can I exercise?",
+        question: "Can I work out the next morning?",
         answer:
-          "Heat and sweat may worsen irritation after some treatments. Use the clinic's procedure-specific timeline.",
+          "Heat and sweat can irritate skin after some procedures. Follow the timeline your provider gives you.",
       },
       {
-        question: "Should I peel flaking skin?",
-        answer: "No. Picking can increase irritation, infection, scarring, and pigment changes.",
+        question: "What should I do about loose flakes?",
+        answer:
+          "Let them fall away naturally. Picking can cause irritation and increase the risk of infection, marks or scars.",
       },
-    ]),
-    references: [...laserReferences, ...regenerativeReferences],
+      {
+        question: "What should I bring up if the area feels worse after a new product?",
+        answer:
+          "Tell the clinic the name of the product, when you applied it and how the skin changed. Ask whether to pause it and what to use in the meantime.",
+      },
+      {
+        question: "When can I return to my usual exfoliant?",
+        answer:
+          "Use the restart timing for the procedure you had. If the skin still stings or is visibly peeling, check with the clinic before adding it back.",
+      },
+    ],
+    references: [
+      {
+        title: "AAD: Chemical peel FAQs",
+        url: "https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs",
+      },
+      {
+        title: "AAD: Laser hair removal FAQs",
+        url: "https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs",
+      },
+      {
+        title: "U.S. FDA: Microneedling device benefits, risks and safety",
+        url: "https://www.fda.gov/consumers/consumer-updates/microneedling-devices-getting-point-benefits-risks-and-safety",
+      },
+    ],
     relatedArticles: ["mccm-professional-skincare-guide", "mccm-professional-chemical-peels"],
     relatedTreatments: [{ label: "ESCLARE Aftercare Library", href: "/aftercare" }],
   },
   {
     slug: "esthemax-hydrojelly-mask-guide",
-    title: "ESTHEMAX HydroJelly Mask: What It Is and What to Expect",
+    title: "ESTHEMAX HydroJelly Mask during a facial",
     excerpt:
-      "Learn how ESTHEMAX HydroJelly Mask is prepared, how the treatment works, what it feels like, and how it may support skin hydration and a refreshed-looking complexion.",
+      "How the mask is mixed, what it feels like, and when it may fit into a facial or another clinic treatment.",
     category: "mccm-skin-science",
     tags: [
       "ESTHEMAX",
@@ -1367,98 +1639,101 @@ const educationArticleSource: ReadonlyArray<EducationArticle> = [
     status: "published",
     published: true,
     publishedAt: "2026-08-09",
-    updatedAt: "2026-08-09",
-    readingMinutes: 7,
-    seoTitle: "ESTHEMAX HydroJelly Mask Guide | Skin Education",
+    updatedAt: "2026-11-12",
+    readingMinutes: 3,
+    seoTitle: "ESTHEMAX HydroJelly Mask during a facial",
     metaDescription:
-      "A patient-friendly guide to ESTHEMAX HydroJelly Mask preparation, application, cosmetic benefits, suitability and aftercare.",
+      "How the mask is mixed, what it feels like, and when it may fit into a facial or another clinic treatment.",
     keyTakeaways: [
-      "The powdered mask is freshly mixed with purified water and sets into a flexible jelly-like layer.",
-      "Specific ingredients and intended cosmetic benefits vary by the selected formulation.",
-      "Suitability depends on skin condition, ingredients, the primary procedure and professional assessment.",
+      "The provider mixes the powder with purified water before application.",
+      "The mask sets into a flexible layer that the provider lifts away.",
+      "Ingredients vary by formulation, so allergies and recent procedures affect suitability.",
     ],
     sections: [
       {
         id: "introduction",
-        title: "What is ESTHEMAX HydroJelly Mask?",
+        title: "What sets into a jelly layer",
         paragraphs: [
-          "ESTHEMAX HydroJelly Mask is a professional peel-off mask that may be incorporated into selected ESCLARE facial or aesthetic protocols. Unlike a conventional sheet or cream mask, its powdered formulation is freshly mixed with purified water and develops a soft jelly-like consistency before setting into a flexible removable layer.",
-          "Where alginate is present in the selected formulation, it helps create the characteristic gel structure. Specific ingredients and intended cosmetic benefits may vary depending on the HydroJelly Mask formulation selected.",
+          "ESTHEMAX HydroJelly Mask is a professional mask used in selected facial protocols. The powder becomes a soft gel when mixed with purified water. In formulas that contain alginate, that ingredient helps the gel form. Ask which formula the provider plans to use if you have reacted to a mask before.",
         ],
       },
       {
         id: "how-it-works",
-        title: "How the treatment is prepared and applied",
+        title: "From mixing to removal",
         paragraphs: [
-          "The provider selects an appropriate formulation, mixes the powder with purified water immediately before use, applies it evenly, allows it to set, and gently removes the flexible layer. Remaining residue is removed and suitable finishing skincare may be applied according to clinic protocol.",
-          "As the mask sets, it forms a close-fitting flexible layer that helps maintain contact between the formulation and the treatment area while helping reduce moisture loss during the treatment period. It should not be described as forcing ingredients into pores or deeper skin layers.",
+          "The provider mixes the mask just before applying it, spreads it over the selected area and lets it set. The flexible layer keeps the formula in contact with the skin while it is on. After lifting it off, the provider removes residue and applies finishing skincare if appropriate.",
         ],
       },
       {
         id: "experience-benefits",
-        title: "What it feels like and potential cosmetic benefits",
+        title: "How the mask may feel",
         paragraphs: [
-          "Clients may notice a cooling sensation, soft jelly texture, comfortable setting process and gentle peel-off removal. Scent and sensory experience may vary by formulation.",
-          "Depending on formulation and skin condition, the mask may help support hydration, softer-feeling skin, a smoother-looking complexion, a refreshed appearance and a cooling, soothing treatment experience. Results and duration vary.",
+          "The layer can feel cool as it sets. Scent and feel vary with the formula. The skin may feel softer, smoother or more hydrated after removal. How long that feeling lasts depends on the skin and the other products used.",
         ],
       },
       {
         id: "suitability",
-        title: "Suitability and use with other treatments",
+        title: "When a mask may need to wait",
         paragraphs: [
-          "It may be considered for clients seeking additional hydration, a refreshing finishing treatment or support for dry-looking skin. Known ingredient allergies, active irritation, open wounds, infection, significant inflammation, recent procedures or previous mask reactions should be disclosed.",
-          "The mask is not automatically suitable after every laser, peel, microneedling, injectable or energy-based procedure. Compatibility depends on the procedure, skin condition, formulation, manufacturer directions, clinic protocol and professional assessment.",
+          "Tell the provider about allergies, recent procedures and previous mask reactions. Open skin, infection or significant irritation needs assessment first. After a laser, peel, microneedling, injection or other procedure, ask whether the selected formula fits the recovery instructions.",
         ],
       },
       {
         id: "after-treatment",
-        title: "What to expect afterward",
+        title: "Which aftercare takes priority?",
         paragraphs: [
-          "After treatment, skin may feel cooler, softer, smoother and more hydrated. The visible effect and duration vary with skin condition, formulation, skincare routine, environment and any other treatment performed during the visit.",
+          "If the mask is part of a visit with another treatment, follow the aftercare for that procedure first. Ask what moisturiser and daytime sunscreen are suitable and when you can return to your usual products.",
         ],
       },
     ],
-    beforecare: ["Disclose allergies, irritation, recent procedures and previous mask reactions."],
+    beforecare: [
+      "Mention allergies, active irritation, previous mask reactions and anything recently done to the area.",
+    ],
     aftercare: [
-      "Follow ESCLARE's skincare instructions and use suitable moisturizer and daytime sunscreen.",
-      "When combined with another procedure, follow that primary procedure's aftercare first.",
+      "Use the moisturiser and daytime sunscreen recommended for your skin.",
+      "If you had a second procedure, follow its recovery instructions.",
     ],
     unsuitable: [
-      "Known ingredient allergy",
+      "A known allergy to a mask ingredient",
       "Open wounds or active infection",
       "Significant inflammation or unusual sensitivity",
     ],
     contactClinic: [
       "Hives",
       "Marked swelling",
-      "Persistent burning",
-      "A worsening unexpected reaction",
+      "Burning that persists",
+      "An unexpected reaction that worsens",
     ],
-    faqs: withStandardFaqs([
+    faqs: [
       {
-        question: "How is HydroJelly Mask prepared?",
-        answer: "The powder is freshly mixed with purified water immediately before application.",
+        question: "Is the mask mixed ahead of my visit?",
+        answer: "The powder is mixed with purified water shortly before it goes on your skin.",
       },
       {
-        question: "What does it feel like?",
+        question: "Will it feel tight as it sets?",
         answer:
-          "It commonly has a cooling, soft jelly texture; the exact sensory experience varies by formulation.",
+          "It sets into a flexible layer. Many formulas feel cool, but the exact feel and scent vary.",
       },
       {
-        question: "Can it be added to a facial?",
+        question: "Can I add it to my facial?",
         answer:
-          "It may be used as a ₱350 facial add-on when compatible with the selected protocol and your skin assessment.",
+          "ESCLARE lists it as a ₱350 facial add-on when the provider confirms it fits the facial and your skin assessment.",
       },
       {
-        question: "Does it require downtime?",
+        question: "Will I need time off afterward?",
         answer:
-          "The mask itself generally does not require downtime, but aftercare from any treatment performed with it takes priority.",
+          "The mask itself generally requires little downtime. Follow any recovery restrictions for the other treatment you had.",
       },
-    ]),
+      {
+        question: "Can I choose the mask by fragrance alone?",
+        answer:
+          "Tell the provider about fragrance sensitivities or past reactions. They can review the ingredients in the specific formula with you.",
+      },
+    ],
     references: [
       {
-        title: "ESTHEMAX official HydroJelly Mask product catalog",
-        url: "https://www.esthemax.com/searchresults.asp?Cat=1977",
+        title: "ESTHEMAX Canada: HydroJelly Mask application and removal",
+        url: "https://esthemax.ca/faq/",
       },
     ],
     relatedArticles: ["mccm-professional-skincare-guide"],

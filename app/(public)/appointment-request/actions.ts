@@ -2,6 +2,7 @@
 
 import { createHmac } from "node:crypto";
 import { headers } from "next/headers";
+import { formatAppointmentRequestMessage } from "@/lib/appointments/request-message";
 import { createSupabaseAdminClient } from "@/lib/auth/supabase-admin";
 import { getBranch } from "@/lib/clinic/details";
 import type { BranchCode } from "@/lib/clinic/details";
@@ -51,7 +52,11 @@ export async function submitPublicAppointmentRequest(
     ? treatments.find((item) => item.slug === parsed.data.treatmentSlug)
     : undefined;
   const branchDetails = getBranch(parsed.data.branchCode);
-  const preparedMessage = `Hello ESCLARE ${branchDetails.name.replace("ESCLARE ", "")}. My name is ${parsed.data.fullName}. I would like to request ${treatment?.name ?? "an appointment"}${parsed.data.preferredDate ? ` on ${parsed.data.preferredDate}` : ""}${parsed.data.preferredTime ? ` at ${parsed.data.preferredTime}` : ""}. Please confirm availability.`;
+  const preparedMessage = formatAppointmentRequestMessage(
+    parsed.data,
+    branchDetails.name,
+    treatment?.name,
+  );
 
   // Honeypot submissions receive a neutral response without reaching the database.
   if (parsed.data.website) {
