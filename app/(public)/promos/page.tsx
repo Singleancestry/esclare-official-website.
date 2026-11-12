@@ -28,7 +28,7 @@ export default function PromosPage() {
         <h2 id="october-promos" className="public-subheading mt-3">
           October 2026 Promos
         </h2>
-        <p className="mt-4 max-w-3xl leading-7">
+        <p className="mt-4 max-w-[65ch] text-pretty leading-7">
           These are the October brochure rates. Check with your branch for current pricing.
           Treatments and packages are subject to clinic assessment, eligibility, scheduling, and
           applicable terms and conditions.

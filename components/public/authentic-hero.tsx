@@ -51,7 +51,7 @@ export function AuthenticHero() {
               <span className="block sm:hidden">Self</span>
               <span className="hidden sm:block">Most Radiant Self</span>
             </p>
-            <h1 className="hero-summary hero-reveal hero-reveal-3 mt-7 max-w-xl text-lg font-semibold sm:text-xl">
+            <h1 className="hero-summary hero-reveal hero-reveal-3 mt-7 max-w-xl text-balance text-lg font-semibold sm:text-xl">
               Professional Aesthetic and Laser Clinic in Naga City and Daet
             </h1>
             <p className="hero-summary hero-reveal hero-reveal-3 mt-3 max-w-xl text-base sm:text-lg">

@@ -227,7 +227,7 @@ export default function TreatmentsPage() {
                       <div className="flex items-start justify-between gap-4">
                         <h3 className="text-xl text-[#3F1724]">{item.name}</h3>
                         {(item.doctorRequired || item.assessmentRequired) && (
-                          <span className="inline-flex shrink-0 items-center gap-1 rounded-md bg-[#F2E7E2] px-2 py-1 text-[10px] font-bold uppercase text-[#6F263D]">
+                          <span className="inline-flex shrink-0 items-center gap-1 rounded-md bg-[#F2E7E2] px-2 py-1 text-xs font-bold uppercase text-[#6F263D]">
                             <Stethoscope size={12} aria-hidden="true" />{" "}
                             {item.doctorRequired ? "Doctor" : "Assessment"}
                           </span>
@@ -321,7 +321,7 @@ export default function TreatmentsPage() {
                     >
                       <th className="p-4 font-semibold text-[#481827]">
                         {item.area}
-                        <span className="mt-1 block text-[10px] font-normal uppercase text-[#6F625A]">
+                        <span className="mt-1 block text-xs font-normal uppercase text-[#6F625A]">
                           {item.category}
                         </span>
                       </th>
