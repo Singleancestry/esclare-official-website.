@@ -184,6 +184,6 @@ test("hero completion exposes the pre-generated final frame without restarting",
   await expect(video).not.toHaveClass(/is-visible/);
   await expect(hero.locator(".hero-media-poster img")).toHaveAttribute(
     "src",
-    "/images/optimized/clinic/esclare-hero-final-frame-v4-mobile.webp",
+    "/images/optimized/clinic/esclare-hero-final-frame-v4-mobile-hd.webp",
   );
 });

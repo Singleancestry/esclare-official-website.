@@ -6,8 +6,8 @@ const VIDEO_SOURCE = "/media/esclare-hero-no-logo-v4-desktop-lite.mp4";
 const MOBILE_VIDEO_SOURCE = "/media/esclare-hero-no-logo-v4-mobile.mp4";
 const INITIAL_POSTER = "/images/optimized/clinic/esclare-hero-poster-v4.webp";
 const FINAL_FRAME = "/images/optimized/clinic/esclare-hero-final-frame-v4.webp";
-const MOBILE_INITIAL_POSTER = "/images/optimized/clinic/esclare-hero-poster-v4-mobile.webp";
-const MOBILE_FINAL_FRAME = "/images/optimized/clinic/esclare-hero-final-frame-v4-mobile.webp";
+const MOBILE_INITIAL_POSTER = "/images/optimized/clinic/esclare-hero-poster-v4-mobile-hd.webp";
+const MOBILE_FINAL_FRAME = "/images/optimized/clinic/esclare-hero-final-frame-v4-mobile-hd.webp";
 const VIDEO_START_DELAY_MS = 250;
 
 type MotionPreference = "unknown" | "allow" | "reduce";

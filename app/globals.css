@@ -876,9 +876,9 @@ a {
   }
 
   .hero-media-poster img {
-    object-position: 70% 46%;
+    object-position: 50% 46%;
     transform: scale(1.08);
-    transform-origin: 70% 46%;
+    transform-origin: 50% 46%;
   }
 
   .hero-content-group::before {
