@@ -26,7 +26,7 @@ export const treatmentGalleryCategories: ReadonlyArray<TreatmentGalleryCategory>
     bookingSlug: "pico-glow-face",
     images: [
       {
-        src: "/images/optimized/treatments/signature/pico-laser-hd.webp",
+        src: "/images/optimized/treatments/pico-face/pico-face-treatment-hd.webp",
         alt: "Pico laser facial treatment with protective eyewear",
         caption: "Pico facial treatment visual",
         width: 1280,

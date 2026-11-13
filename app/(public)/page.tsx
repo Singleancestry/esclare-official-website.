@@ -52,7 +52,7 @@ const signatureTreatments = [
     benefits: ["Tone and texture", "Individual settings"],
     href: "/treatments#laser-and-brightening",
     bookingSlug: "pico-glow-face",
-    image: "/images/optimized/treatments/signature/pico-laser-hd.webp",
+    image: "/images/optimized/treatments/pico-face/pico-face-treatment-hd.webp",
     mediaTone: "sepia(0.12) saturate(0.96)",
     alt: "ESCLARE Pico laser facial treatment",
   },
