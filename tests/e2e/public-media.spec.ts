@@ -76,8 +76,9 @@ test("treatment gallery filters verified media and preserves booking selection",
     page.getByRole("heading", { name: "A closer look, with clinical honesty." }),
   ).toBeVisible();
   await expect(
-    page.getByRole("img", {
+    page.getByRole("tabpanel").getByRole("img", {
       name: "Pico laser facial treatment with protective eyewear",
+      exact: true,
     }),
   ).toBeVisible();
 
