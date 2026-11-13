@@ -28,6 +28,9 @@ export const metadata: Metadata = {
   },
 };
 
+const signatureImageSizes =
+  "(min-width: 1384px) 248px, (min-width: 1280px) 18vw, (min-width: 768px) 46vw, 92vw";
+
 const signatureTreatments = [
   {
     name: "Korean Facial",
@@ -37,7 +40,7 @@ const signatureTreatments = [
     benefits: ["Skin assessment", "Personalized facial care"],
     href: "/treatments/korean-facial",
     bookingSlug: "korean-facial",
-    image: "/images/optimized/treatments/signature/korean-facial.webp",
+    image: "/images/optimized/treatments/signature/korean-facial-hd.webp",
     mediaTone: "sepia(0.06) saturate(0.96)",
     alt: "Gloved ESCLARE staff member working with a client during a facial",
   },
@@ -49,7 +52,7 @@ const signatureTreatments = [
     benefits: ["Tone and texture", "Individual settings"],
     href: "/treatments#laser-and-brightening",
     bookingSlug: "pico-glow-face",
-    image: "/images/optimized/treatments/signature/pico-laser.webp",
+    image: "/images/optimized/treatments/pico-face/pico-face-treatment-hd.webp",
     mediaTone: "sepia(0.12) saturate(0.96)",
     alt: "ESCLARE Pico laser facial treatment",
   },
@@ -62,6 +65,7 @@ const signatureTreatments = [
     href: "/diode-laser",
     bookingSlug: "",
     videoId: "signature-diode",
+    poster: "/media/treatment-clips/signature-diode-hd.webp",
     mediaTone: "sepia(0.07) saturate(0.96)",
   },
   {
@@ -73,6 +77,7 @@ const signatureTreatments = [
     href: "/treatments#lifting-and-contouring",
     bookingSlug: "7d-hifu-face",
     videoId: "signature-hifu",
+    poster: "/media/treatment-clips/signature-hifu-hd.webp",
     mediaTone: "sepia(0.06) saturate(0.96)",
   },
   {
@@ -83,7 +88,7 @@ const signatureTreatments = [
     benefits: ["Doctor assessment", "Natural-looking goals"],
     href: "/treatments#doctor-procedures",
     bookingSlug: "fine-lines",
-    image: "/images/optimized/treatments/signature/botox-injections.webp",
+    image: "/images/optimized/treatments/signature/botox-injections-hd.webp",
     mediaTone: "saturate(0.93)",
     alt: "Illustration of a provider preparing a forehead injection",
   },
@@ -141,6 +146,8 @@ export default function PublicHomePage() {
                     {"videoId" in treatment ? (
                       <TreatmentVideoPlayer
                         videoId={treatment.videoId}
+                        poster={treatment.poster}
+                        posterSizes={signatureImageSizes}
                         surface="signature"
                         aria-label={treatment.name + " treatment video"}
                         className="block h-full w-full object-cover"
@@ -150,7 +157,7 @@ export default function PublicHomePage() {
                         src={treatment.image}
                         alt={treatment.alt}
                         fill
-                        sizes="(min-width: 1280px) 18vw, (min-width: 768px) 45vw, 92vw"
+                        sizes={signatureImageSizes}
                         className="object-cover transition duration-700 ease-out group-hover:scale-[1.045]"
                       />
                     )}
@@ -231,7 +238,7 @@ export default function PublicHomePage() {
                 src={diodeMachine.src}
                 alt={diodeMachine.alt}
                 fill
-                sizes="(min-width: 1024px) 27vw, 45vw"
+                sizes="(min-width: 1024px) 40vw, (min-width: 768px) 65vw, 145vw"
                 className="object-cover transition duration-700 ease-out group-hover:scale-[1.035]"
               />
             </figure>
@@ -243,7 +250,7 @@ export default function PublicHomePage() {
                 src={attendantPortrait.src}
                 alt={attendantPortrait.alt}
                 fill
-                sizes="(min-width: 1024px) 27vw, 45vw"
+                sizes="(min-width: 1024px) 27vw, (min-width: 768px) 45vw, 92vw"
                 className="object-cover transition duration-700 ease-out group-hover:scale-[1.035]"
               />
             </figure>
@@ -277,7 +284,7 @@ export default function PublicHomePage() {
                 src="/images/optimized/treatments/devices/diode-4d/diode-4d-device.webp"
                 alt="ESCLARE 4D diode laser device"
                 fill
-                sizes="(min-width: 1024px) 22vw, 45vw"
+                sizes="(min-width: 1024px) 33vw, 68vw"
                 className="object-cover"
               />
             </div>
@@ -347,12 +354,15 @@ export default function PublicHomePage() {
               Request assessment
             </Link>
           </div>
-          <div className="relative min-h-[560px] lg:min-h-[700px]" data-reveal="right">
+          <div
+            className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[700px]"
+            data-reveal="right"
+          >
             <Image
               src="/images/optimized/treatments/doctor/anti-wrinkle/anti-wrinkle-treatment.webp"
               alt="ESCLARE doctor performing an aesthetic consultation treatment"
               fill
-              sizes="(min-width: 1024px) 55vw, 100vw"
+              sizes="(min-width: 1024px) 1250px, 135vw"
               className="object-cover"
             />
           </div>

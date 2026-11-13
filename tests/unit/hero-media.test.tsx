@@ -67,7 +67,7 @@ describe("HeroMedia", () => {
     const video = container.querySelector("video");
     expect(poster).toHaveAttribute(
       "src",
-      "/images/optimized/clinic/esclare-hero-poster-v4-mobile.webp",
+      "/images/optimized/clinic/esclare-hero-poster-v4-mobile-hd.webp",
     );
     expect(video).toHaveAttribute("autoplay");
     expect(video).not.toHaveAttribute("loop");
@@ -192,7 +192,7 @@ describe("HeroMedia", () => {
     expect(video).not.toHaveClass("is-visible");
     expect(container.querySelector(".hero-media-poster img")).toHaveAttribute(
       "src",
-      "/images/optimized/clinic/esclare-hero-final-frame-v4-mobile.webp",
+      "/images/optimized/clinic/esclare-hero-final-frame-v4-mobile-hd.webp",
     );
     expect(play).toHaveBeenCalledTimes(1);
   });

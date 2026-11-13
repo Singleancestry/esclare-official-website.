@@ -18,16 +18,18 @@ type AnalyticsWindow = Window & {
 type Props = Pick<ComponentProps<"video">, "aria-label" | "className" | "poster"> & {
   videoId: string;
   surface: VideoSurface;
+  posterSizes?: string;
 };
 
-export function TreatmentVideoPlayer({ videoId, surface, poster, ...props }: Props) {
+export function TreatmentVideoPlayer({ videoId, surface, poster, posterSizes, ...props }: Props) {
   const sent = useRef(new Set<VideoEvent>());
   const videoRef = useRef<HTMLVideoElement>(null);
   const playButtonRef = useRef<HTMLButtonElement>(null);
   const [playback, setPlayback] = useState<"ready" | "loading" | "started" | "failed">("ready");
   const usesPlayButton = surface === "signature" || surface === "catalog";
   const showPlayButton = usesPlayButton && playback !== "started";
-  const catalogPoster = surface === "catalog" ? poster : undefined;
+  const responsivePoster =
+    surface === "catalog" || (usesPlayButton && posterSizes) ? poster : undefined;
 
   function track(event: VideoEvent) {
     if (sent.current.has(event) || !readPrivacyConsent()?.analytics) return;
@@ -45,7 +47,9 @@ export function TreatmentVideoPlayer({ videoId, surface, poster, ...props }: Pro
       tabIndex={showPlayButton ? -1 : undefined}
       playsInline
       preload="none"
-      poster={catalogPoster ? undefined : (poster ?? "/media/treatment-clips/" + videoId + ".webp")}
+      poster={
+        responsivePoster ? undefined : (poster ?? "/media/treatment-clips/" + videoId + ".webp")
+      }
       src={"/media/treatment-clips/" + videoId + ".mp4"}
       onPlaying={() => {
         if (showPlayButton) {
@@ -76,12 +80,12 @@ export function TreatmentVideoPlayer({ videoId, surface, poster, ...props }: Pro
   return (
     <div className="relative size-full">
       {player}
-      {showPlayButton && catalogPoster && (
+      {showPlayButton && responsivePoster && (
         <Image
-          src={catalogPoster}
+          src={responsivePoster}
           alt=""
           fill
-          sizes="(min-width: 1024px) 23vw, (min-width: 640px) 43vw, 85vw"
+          sizes={posterSizes ?? "(min-width: 1024px) 23vw, (min-width: 640px) 43vw, 85vw"}
           className="pointer-events-none object-cover"
         />
       )}

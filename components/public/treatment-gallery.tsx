@@ -169,7 +169,11 @@ export function TreatmentGallery() {
                       src={image.src}
                       alt={image.alt}
                       fill
-                      sizes="(min-width: 1024px) 32vw, 100vw"
+                      sizes={
+                        image.width < image.height
+                          ? "(min-width: 1384px) 475px, (min-width: 1024px) 36vw, (min-width: 640px) 58vw, 100vw"
+                          : "(min-width: 1384px) 375px, (min-width: 1024px) 29vw, (min-width: 640px) 46vw, 88vw"
+                      }
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                     />
                     <span className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-[#210A13]/85 to-transparent p-4 pt-12 text-left text-xs font-semibold text-white">

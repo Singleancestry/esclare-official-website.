@@ -76,8 +76,9 @@ test("treatment gallery filters verified media and preserves booking selection",
     page.getByRole("heading", { name: "A closer look, with clinical honesty." }),
   ).toBeVisible();
   await expect(
-    page.getByRole("img", {
-      name: "Pico laser facial treatment visual with protective eyewear in a private treatment room",
+    page.getByRole("tabpanel").getByRole("img", {
+      name: "Pico laser facial treatment with protective eyewear",
+      exact: true,
     }),
   ).toBeVisible();
 
@@ -184,6 +185,6 @@ test("hero completion exposes the pre-generated final frame without restarting",
   await expect(video).not.toHaveClass(/is-visible/);
   await expect(hero.locator(".hero-media-poster img")).toHaveAttribute(
     "src",
-    "/images/optimized/clinic/esclare-hero-final-frame-v4-mobile.webp",
+    "/images/optimized/clinic/esclare-hero-final-frame-v4-mobile-hd.webp",
   );
 });
