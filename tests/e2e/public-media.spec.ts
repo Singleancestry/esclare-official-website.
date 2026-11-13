@@ -77,7 +77,7 @@ test("treatment gallery filters verified media and preserves booking selection",
   ).toBeVisible();
   await expect(
     page.getByRole("img", {
-      name: "Pico laser facial treatment visual with protective eyewear in a private treatment room",
+      name: "Pico laser facial treatment with protective eyewear",
     }),
   ).toBeVisible();
 
