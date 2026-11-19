@@ -79,6 +79,16 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["127.0.0.1"],
   poweredByHeader: false,
   compress: true,
+  webpack(config) {
+    // Imported hero videos use content-hashed Next static assets. Hostinger serves
+    // public/media directly without the Cache-Control headers configured below.
+    config.module.rules.push({
+      test: /\.mp4$/i,
+      type: "asset/resource",
+      generator: { filename: "static/media/[name].[contenthash:8][ext]" },
+    });
+    return config;
+  },
   images: {
     formats: ["image/avif", "image/webp"],
   },
