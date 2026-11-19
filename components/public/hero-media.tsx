@@ -1,13 +1,21 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import desktopVideo from "@/public/media/esclare-hero-no-logo-v4-desktop-lite.mp4";
+import mobileVideo from "@/public/media/esclare-hero-no-logo-v4-mobile.mp4";
+import initialPoster from "@/public/images/optimized/clinic/esclare-hero-poster-v4.webp";
+import initialPoster1440 from "@/public/images/optimized/clinic/esclare-hero-poster-v4-1440.webp";
+import finalFrame from "@/public/images/optimized/clinic/esclare-hero-final-frame-v4.webp";
+import finalFrame1440 from "@/public/images/optimized/clinic/esclare-hero-final-frame-v4-1440.webp";
+import mobileInitialPoster from "@/public/images/optimized/clinic/esclare-hero-poster-v4-mobile-hd.webp";
+import mobileFinalFrame from "@/public/images/optimized/clinic/esclare-hero-final-frame-v4-mobile-hd.webp";
 
-const VIDEO_SOURCE = "/media/esclare-hero-no-logo-v4-desktop-lite.mp4";
-const MOBILE_VIDEO_SOURCE = "/media/esclare-hero-no-logo-v4-mobile.mp4";
-const INITIAL_POSTER = "/images/optimized/clinic/esclare-hero-poster-v4.webp";
-const FINAL_FRAME = "/images/optimized/clinic/esclare-hero-final-frame-v4.webp";
-const MOBILE_INITIAL_POSTER = "/images/optimized/clinic/esclare-hero-poster-v4-mobile-hd.webp";
-const MOBILE_FINAL_FRAME = "/images/optimized/clinic/esclare-hero-final-frame-v4-mobile-hd.webp";
+const INITIAL_POSTER = initialPoster.src;
+const FINAL_FRAME = finalFrame.src;
+const MOBILE_INITIAL_POSTER = mobileInitialPoster.src;
+const MOBILE_FINAL_FRAME = mobileFinalFrame.src;
+const INITIAL_POSTER_SRCSET = `${initialPoster1440.src} 1440w, ${INITIAL_POSTER} ${initialPoster.width}w`;
+const FINAL_FRAME_SRCSET = `${finalFrame1440.src} 1440w, ${FINAL_FRAME} ${finalFrame.width}w`;
 const VIDEO_START_DELAY_MS = 250;
 
 type MotionPreference = "unknown" | "allow" | "reduce";
@@ -22,7 +30,7 @@ export function HeroMedia() {
   const completedRef = useRef(false);
   const [motionPreference, setMotionPreference] = useState<MotionPreference>("unknown");
   const [playbackState, setPlaybackState] = useState<PlaybackState>("poster");
-  const [videoReady, setVideoReady] = useState(false);
+  const [videoSource, setVideoSource] = useState<string>();
 
   const attemptPlayback = useCallback(async () => {
     const video = videoRef.current;
@@ -52,7 +60,7 @@ export function HeroMedia() {
     const updatePreference = () => {
       setMotionPreference(mediaQuery.matches ? "reduce" : "allow");
       if (mediaQuery.matches) {
-        setVideoReady(false);
+        setVideoSource(undefined);
         videoRef.current?.pause();
         setPlaybackState("poster");
       }
@@ -68,7 +76,9 @@ export function HeroMedia() {
 
     const enableVideo = () => {
       window.clearTimeout(startTask);
-      setVideoReady(true);
+      // Assign exactly one src after hydration. Inserting multiple <source>
+      // elements can start the desktop download before mobile selection settles.
+      setVideoSource(window.matchMedia("(max-width: 767px)").matches ? mobileVideo : desktopVideo);
     };
     // Give the preloaded poster a head start without waiting for unrelated page assets.
     const startTask = window.setTimeout(enableVideo, VIDEO_START_DELAY_MS);
@@ -84,9 +94,7 @@ export function HeroMedia() {
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || motionPreference !== "allow" || !videoReady) return;
-
-    video.load();
+    if (!video || motionPreference !== "allow" || !videoSource) return;
 
     const retryAfterInteraction = () => {
       if (playbackBlockedRef.current && !interactionRetryUsedRef.current) {
@@ -125,18 +133,22 @@ export function HeroMedia() {
       document.removeEventListener("keydown", retryAfterInteraction);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [attemptPlayback, motionPreference, videoReady]);
+  }, [attemptPlayback, motionPreference, videoSource]);
 
   useEffect(() => {
     if (playbackState !== "playing") return;
-    const finalFrame = new Image();
-    finalFrame.src = window.matchMedia("(max-width: 767px)").matches
-      ? MOBILE_FINAL_FRAME
-      : FINAL_FRAME;
+    const endingImage = new Image();
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      endingImage.src = MOBILE_FINAL_FRAME;
+    } else {
+      endingImage.sizes = "100vw";
+      endingImage.srcset = FINAL_FRAME_SRCSET;
+      endingImage.src = FINAL_FRAME;
+    }
   }, [playbackState]);
 
   const videoVisible = playbackState === "playing";
-  const posterSource = playbackState === "complete" ? FINAL_FRAME : INITIAL_POSTER;
+  const posterSrcSet = playbackState === "complete" ? FINAL_FRAME_SRCSET : INITIAL_POSTER_SRCSET;
   const mobilePosterSource =
     playbackState === "complete" ? MOBILE_FINAL_FRAME : MOBILE_INITIAL_POSTER;
 
@@ -153,16 +165,19 @@ export function HeroMedia() {
         rel="preload"
         as="image"
         href={INITIAL_POSTER}
+        imageSrcSet={INITIAL_POSTER_SRCSET}
+        imageSizes="100vw"
         media="(min-width: 768px)"
         fetchPriority="high"
       />
       <div className="hero-media" data-playback-state={playbackState} aria-hidden="true">
         <picture className="hero-media-poster">
-          <source media="(min-width: 768px)" srcSet={posterSource} />
+          <source media="(min-width: 768px)" srcSet={posterSrcSet} sizes="100vw" />
           <img src={mobilePosterSource} alt="" fetchPriority="high" />
         </picture>
         <video
           ref={videoRef}
+          src={videoSource}
           className={`hero-media-video${videoVisible ? " is-visible" : ""}`}
           autoPlay
           muted
@@ -193,14 +208,7 @@ export function HeroMedia() {
             playbackBlockedRef.current = false;
             setPlaybackState("fallback");
           }}
-        >
-          {videoReady ? (
-            <>
-              <source media="(max-width: 767px)" src={MOBILE_VIDEO_SOURCE} type="video/mp4" />
-              <source src={VIDEO_SOURCE} type="video/mp4" />
-            </>
-          ) : null}
-        </video>
+        />
       </div>
     </>
   );

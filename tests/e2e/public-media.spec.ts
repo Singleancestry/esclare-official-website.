@@ -106,7 +106,7 @@ test("premium homepage respects reduced motion", async ({ page }) => {
   const hero = page.locator(".hero-media");
   await expect(hero.locator(".hero-media-poster img")).toBeVisible();
   await expect(hero).toHaveAttribute("data-playback-state", "poster");
-  await expect(hero.locator("video source")).toHaveCount(0);
+  await expect(hero.locator("video")).not.toHaveAttribute("src");
 });
 
 test("hero retains its poster and actions when video playback fails", async ({
@@ -114,7 +114,7 @@ test("hero retains its poster and actions when video playback fails", async ({
   browserName,
 }) => {
   if (browserName !== "webkit") {
-    await page.route("**/media/esclare-hero-no-logo-v4*.mp4*", (route) =>
+    await page.route("**/esclare-hero-no-logo-v4*.mp4*", (route) =>
       route.fulfill({ status: 503, contentType: "video/mp4", body: "" }),
     );
   }
@@ -176,7 +176,7 @@ test("hero completion exposes the pre-generated final frame without restarting",
   const hero = page.locator(".hero-media");
   const video = hero.locator("video");
 
-  await expect(video.locator("source")).toHaveCount(2);
+  await expect(video).toHaveAttribute("src", /esclare-hero-no-logo-v4.*\.mp4/);
   await video.evaluate((element: HTMLVideoElement) => {
     element.dispatchEvent(new Event("ended"));
   });
@@ -185,6 +185,39 @@ test("hero completion exposes the pre-generated final frame without restarting",
   await expect(video).not.toHaveClass(/is-visible/);
   await expect(hero.locator(".hero-media-poster img")).toHaveAttribute(
     "src",
-    "/images/optimized/clinic/esclare-hero-final-frame-v4-mobile-hd.webp",
+    /esclare-hero-final-frame-v4-mobile-hd.*\.webp/,
   );
+});
+
+test("hero downloads exactly the viewport video and caches its build assets", async ({
+  page,
+  browserName,
+}) => {
+  const videos = new Set<string>();
+  page.on("request", (request) => {
+    if (/esclare-hero-no-logo-v4.*\.mp4/.test(request.url())) videos.add(request.url());
+  });
+  await page.goto("/");
+  const video = page.locator(".hero-media video");
+  const mobile = (page.viewportSize()?.width ?? 1280) < 768;
+  await expect(video).toHaveAttribute("src", mobile ? /v4-mobile/ : /v4-desktop-lite/);
+  const source = await video.getAttribute("src");
+  expect(source).toContain("/_next/static/media/");
+  if (browserName === "webkit" && process.platform === "win32") {
+    // Windows WebKit may keep the poster without issuing an MP4 request.
+    // Actual MP4 request selection is enforced in both Chromium projects.
+    expect(videos.size).toBeLessThanOrEqual(1);
+    await expect(page.locator(".hero-media-poster img")).toBeVisible();
+  } else {
+    await expect.poll(() => videos.size).toBe(1);
+  }
+  for (const url of videos) expect(url).toContain(mobile ? "v4-mobile" : "v4-desktop-lite");
+  const response = await page.request.get(source!, { headers: { Range: "bytes=0-1023" } });
+  expect([200, 206]).toContain(response.status());
+  expect(response.headers()["cache-control"]).toContain("max-age=31536000");
+  const poster = await page
+    .locator(".hero-media-poster img")
+    .evaluate((image: HTMLImageElement) => image.currentSrc);
+  const imageResponse = await page.request.get(poster);
+  expect(imageResponse.headers()["cache-control"]).toContain("max-age=31536000");
 });

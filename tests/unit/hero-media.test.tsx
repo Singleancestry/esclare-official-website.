@@ -2,6 +2,28 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { HeroMedia } from "@/components/public/hero-media";
 
+vi.mock("@/public/images/optimized/clinic/esclare-hero-poster-v4.webp", () => ({
+  default: { src: "/images/optimized/clinic/esclare-hero-poster-v4.webp", width: 1920 },
+}));
+vi.mock("@/public/images/optimized/clinic/esclare-hero-poster-v4-1440.webp", () => ({
+  default: { src: "/images/optimized/clinic/esclare-hero-poster-v4-1440.webp", width: 1920 },
+}));
+vi.mock("@/public/images/optimized/clinic/esclare-hero-final-frame-v4.webp", () => ({
+  default: { src: "/images/optimized/clinic/esclare-hero-final-frame-v4.webp", width: 1920 },
+}));
+vi.mock("@/public/images/optimized/clinic/esclare-hero-final-frame-v4-1440.webp", () => ({
+  default: { src: "/images/optimized/clinic/esclare-hero-final-frame-v4-1440.webp", width: 1920 },
+}));
+vi.mock("@/public/images/optimized/clinic/esclare-hero-poster-v4-mobile-hd.webp", () => ({
+  default: { src: "/images/optimized/clinic/esclare-hero-poster-v4-mobile-hd.webp", width: 1920 },
+}));
+vi.mock("@/public/images/optimized/clinic/esclare-hero-final-frame-v4-mobile-hd.webp", () => ({
+  default: {
+    src: "/images/optimized/clinic/esclare-hero-final-frame-v4-mobile-hd.webp",
+    width: 1920,
+  },
+}));
+
 class IntersectionObserverMock implements IntersectionObserver {
   readonly root = null;
   readonly rootMargin = "0px";
@@ -45,9 +67,9 @@ describe("HeroMedia", () => {
       const { container } = render(<HeroMedia />);
       const video = container.querySelector("video");
 
-      expect(video?.querySelector("source")).toBeNull();
+      expect(video).not.toHaveAttribute("src");
       act(() => vi.advanceTimersByTime(250));
-      expect(video?.querySelectorAll("source")).toHaveLength(2);
+      expect(video).toHaveAttribute("src", expect.stringContaining("desktop-lite.mp4"));
       expect(container.querySelector(".hero-media")).toHaveAttribute(
         "data-playback-state",
         "poster",
@@ -76,15 +98,29 @@ describe("HeroMedia", () => {
     expect(video).toHaveAttribute("playsinline");
     expect(video).toHaveAttribute("preload", "none");
     expect(video).not.toHaveAttribute("poster");
-    await waitFor(() => expect(video?.querySelectorAll("source")).toHaveLength(2));
-    expect(video?.querySelector('source[media="(max-width: 767px)"]')).toHaveAttribute(
-      "src",
-      "/media/esclare-hero-no-logo-v4-mobile.mp4",
+    await waitFor(() =>
+      expect(video).toHaveAttribute("src", expect.stringContaining("desktop-lite.mp4")),
     );
-    expect(video?.querySelector("source:not([media])")).toHaveAttribute(
-      "src",
-      "/media/esclare-hero-no-logo-v4-desktop-lite.mp4",
+    expect(video?.querySelectorAll("source")).toHaveLength(0);
+  });
+
+  it("assigns only the mobile video on small screens", async () => {
+    setReducedMotion(false);
+    vi.mocked(window.matchMedia).mockImplementation(
+      (query) =>
+        ({
+          matches: query === "(max-width: 767px)",
+          addEventListener: vi.fn(),
+          removeEventListener: vi.fn(),
+        }) as unknown as MediaQueryList,
     );
+    const { container } = render(<HeroMedia />);
+    fireEvent.pointerDown(document.body);
+    const video = container.querySelector("video");
+    await waitFor(() =>
+      expect(video).toHaveAttribute("src", expect.stringContaining("v4-mobile.mp4")),
+    );
+    expect(video?.querySelectorAll("source")).toHaveLength(0);
   });
 
   it("reveals the video only after playback and restores the poster on media failure", async () => {
@@ -95,7 +131,7 @@ describe("HeroMedia", () => {
     const hero = container.querySelector(".hero-media");
     const video = container.querySelector("video");
 
-    await waitFor(() => expect(video?.querySelector("source")).toBeTruthy());
+    await waitFor(() => expect(video).toHaveAttribute("src"));
     expect(hero).toHaveAttribute("data-playback-state", "poster");
     fireEvent.playing(video!);
     expect(hero).toHaveAttribute("data-playback-state", "playing");
@@ -116,7 +152,7 @@ describe("HeroMedia", () => {
         "poster",
       ),
     );
-    expect(container.querySelector("video source")).toBeNull();
+    expect(container.querySelector("video")).not.toHaveAttribute("src");
     expect(play).not.toHaveBeenCalled();
   });
 
@@ -129,7 +165,7 @@ describe("HeroMedia", () => {
     fireEvent.pointerDown(document.body);
     const video = container.querySelector("video");
 
-    await waitFor(() => expect(video?.querySelector("source")).toBeTruthy());
+    await waitFor(() => expect(video).toHaveAttribute("src"));
     fireEvent.canPlay(video!);
     await waitFor(() =>
       expect(container.querySelector(".hero-media")).toHaveAttribute(
@@ -153,7 +189,7 @@ describe("HeroMedia", () => {
     fireEvent.pointerDown(document.body);
     const video = container.querySelector("video");
 
-    await waitFor(() => expect(video?.querySelector("source")).toBeTruthy());
+    await waitFor(() => expect(video).toHaveAttribute("src"));
     fireEvent.canPlay(video!);
     await waitFor(() =>
       expect(container.querySelector(".hero-media")).toHaveAttribute(
@@ -177,7 +213,7 @@ describe("HeroMedia", () => {
     fireEvent.pointerDown(document.body);
     const video = container.querySelector("video")!;
 
-    await waitFor(() => expect(video.querySelector("source")).toBeTruthy());
+    await waitFor(() => expect(video).toHaveAttribute("src"));
     fireEvent.canPlay(video);
     await waitFor(() => expect(play).toHaveBeenCalledTimes(1));
     fireEvent.playing(video);
